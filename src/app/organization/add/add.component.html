@@ -1,0 +1,25 @@
+<app-sidebar></app-sidebar>  
+<div class="main">
+<h1 class="p-2  bg-dark text-white">Add Organization</h1>
+
+
+<div id="form" style="padding: 3%;position:absolute;" class="border border rounded">
+  <h1 class="p-2 mb-2 bg-dark text-white">Enter Organization details</h1>
+
+
+<form [formGroup]="addForm" (ngSubmit)="save()" class="form-group">
+  
+    <label><h3>Name</h3></label> <input type="text" formControlName="name" />
+    <label><h3>Alias</h3></label><input type="text" formControlName="alias"/><br>
+    <label><h3>University</h3></label><input type="text" formControlName="university" /><br>
+   
+<button type="submit" class="btn btn-dark text-white">Save</button>
+
+
+
+
+</form>
+</div>
+</div>
+
+<router-outlet></router-outlet>

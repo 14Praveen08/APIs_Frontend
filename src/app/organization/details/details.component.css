@@ -1,0 +1,17 @@
+.main {
+
+   /* Same as the width of the sidenav   margin-top: 50px;  
+    margin-left: 30px;*/
+    font-size: 20px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+  }
+th{
+  width: 50%;
+}
+td{
+  width: 50%;
+}
+table{
+  width: 50%;
+  
+}

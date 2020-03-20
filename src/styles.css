@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.main {
+    width:95%;
+    float:right;
+    margin-top: 5%;
+    margin-right: 2%;
+    
+         /* Same as the width of the sidenav   margin-top: 50px;  
+        margin-left: 30px;*/
+        font-size: 18px; /* Increased text to enable scrolling */
+        padding: 0px 10px;
+        
+      }

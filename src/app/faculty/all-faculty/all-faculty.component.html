@@ -1,0 +1,49 @@
+<app-sidebar></app-sidebar>
+<div class="main">
+   <h1 class="p-3 mb-2 bg-dark text-white">Employees</h1>
+<div>
+   <label>Show by Institution</label>&nbsp;&nbsp;<select (change)="organization($event.target.value)"
+   class="btn btn-dark dropdown-toggle border border-dark text-white">
+  <option value="0" >All Institutions</option>
+   <option *ngFor="let org of orgObj;" [value]="org.id">{{this.org.name}}</option>
+</select>
+<button routerLink="/addFaculties" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;">Add Faculty</button>
+</div>
+<div >
+<table  class="table table-striped" border="2" >
+  <thead>
+     <tr>
+        <th>No</th>
+        <th>FirstName</th>            
+        <th>LastName</th>
+        <th>Organization</th>
+        <th>Role</th>
+        <th>DateOfBirth</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>CreatedOn</th>
+        <th>ModifiedOn</th>
+        <th>Action</th>
+     </tr>
+
+  </thead>
+  <tr *ngIf=!flag>No Value</tr>
+  <tbody *ngIf=flag>
+   <tr *ngFor="let i of this.faculty ;let j=index;">    
+    <th>{{j+1}}</th>
+     <td> {{i.first_name}}</td>
+     <td>{{i.last_name}}</td>
+     <td>{{i.org.name}}</td>
+     <td>{{i.roles.name}}</td>
+     <td>{{i.dob}}</td>
+     <td>{{i.email}}</td>
+     <td>{{i.mobile_no}}</td>
+     <td>{{i.createdon | date:'medium'}}</td>
+     <td>{{i.modifiedon  | date:'medium'}}</td>
+     <td><i [routerLink]="['/editfaculty',i.id,this.i.org.id,this.i.org.name]" class="pi pi-pencil" style="font-size: 2em"></i>
+      &nbsp;&nbsp;<i  (click)="delete(i.id)" class="pi pi-trash" style="font-size: 2em"></i></td>
+   </tr>
+  </tbody>
+</table>
+</div>
+</div>

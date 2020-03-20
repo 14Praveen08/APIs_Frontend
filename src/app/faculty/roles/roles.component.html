@@ -1,0 +1,38 @@
+<app-sidebar></app-sidebar>
+<div class="main">
+    <h1 class="p-3 mb-2 bg-dark text-white">Faculty Roles</h1>
+
+
+    <div *ngIf="flag">
+
+        <table border="2" class="table table-striped">
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+            </tr></thead>
+
+
+
+<tbody>
+    <tr *ngFor="let r of role;let i=index">
+        <td>{{i+1}}</td>
+        <td>{{r.name}}</td>
+    </tr>
+</tbody>
+
+        </table>
+
+    </div>
+    <div class="dropdown show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Add Role
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" [formGroup]="addrole">
+            <input type="text" formControlName="name" placeholder="Enter Role..." />
+            <button type="submit" (click)=add() class="btn btn-dark btn-block"><i class="pi pi-plus-circle"
+                    style="font-size: 1em "></i>Add</button>
+        </div>
+    </div>
+</div>

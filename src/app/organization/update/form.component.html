@@ -1,0 +1,18 @@
+<app-sidebar></app-sidebar>  
+
+
+<div id="form" style="padding: 3%;position:absolute;" class="border border-primary rounded">
+    <h1 class="p-2  bg-dark text-white">Edit Organization Details</h1>
+<form [formGroup]="editForm" (ngSubmit)="update()">
+    <label>Name</label>&nbsp; <input type="text" formControlName="name" ><br>
+    <label>Alias Name</label>&nbsp;<input type="text" formControlName="alias"  /><br>
+    <label>University</label>&nbsp;<br><br><input type="text" formControlName="university"/><br>  
+  
+<button type="submit" class="btn btn-dark">Update</button>&nbsp;&nbsp;
+<button type="button" (click)="load()" class="btn btn-warning">Reset</button>
+
+
+
+</form>
+</div>
+<router-outlet></router-outlet>

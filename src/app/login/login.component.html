@@ -1,0 +1,18 @@
+<div id="login">
+<div style="padding: 5%;position:absolute;" class="border border-dark rounded" >
+  <h1 class="p-3 mb-2 bg-dark text-white">Login Page</h1>
+    <div class="form-group" >
+      
+     <label> <h2>Username</h2></label>  &nbsp;
+      <input type="text" name="username" [(ngModel)]="username" ><br><br> 
+     <label><h2>Password</h2></label>   &nbsp;
+     <input type="password" name="password" [(ngModel)]="password" class="form-control" ><br>
+    <br><br>
+    <button (click)=check() class="btn btn-dark">
+      Login
+    </button>
+  </div> </div>
+  
+</div>
+
+  <router-outlet></router-outlet>

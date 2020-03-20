@@ -1,0 +1,37 @@
+<app-sidebar></app-sidebar> 
+
+<div class="main">
+<h1 class="p-2 mb-2 bg-dark text-white">Add Faculty Details</h1>
+<p-tabView>
+   <p-tabPanel header="Organization" id="o">
+      <form [formGroup]="facultyform" > 
+         <label>Organization </label>&nbsp;&nbsp;
+         <select (change)="organization($event.target.value)"class="btn btn-dark dropdown-toggle border border-dark text-white">
+         <option value="" disabled selected>Select</option>
+         <option *ngFor="let org of orgObj;" [value]="org.id">{{this.org.name}}</option>
+         </select><br><br>
+   </form>
+   </p-tabPanel>
+
+   <p-tabPanel header="Personal Details">
+<form [formGroup]="facultyform" (ngSubmit)="save()">
+
+<label>FirstName</label>&nbsp;<input type="text" formControlName="first_name"> <br><br>
+<label>LastName</label>&nbsp;<input type="text" formControlName="last_name" /><br><br>
+<label>DateOfBirth</label>&nbsp;<input type="date" formControlName="dob" /><br><br>
+<label>EmployeeId</label>&nbsp;<input type="text" formControlName="employee_id"><br><br>
+<label>Email</label>&nbsp;<input type="email" formControlName="email" /><br><br>
+<label>MobileNo</label>&nbsp;<input type="tel" formControlName="mobile_no" /><br><br>
+<label>Role </label>&nbsp;&nbsp;
+<select (change)="role($event.target.value)" class="btn btn-dark dropdown-toggle border border-dark text-white">
+<option value="" disabled selected>Select</option>
+<option *ngFor="let role of roles;" [value]="role.id">{{this.role.name}}</option>
+</select><br><br>
+<button type="submit" class="btn btn-dark" >Save</button>      
+</form>
+</p-tabPanel>
+
+
+</p-tabView>
+</div>
+<router-outlet></router-outlet>

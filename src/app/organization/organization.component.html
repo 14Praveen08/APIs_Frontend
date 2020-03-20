@@ -1,0 +1,53 @@
+<app-sidebar></app-sidebar>
+<!-- <h1 class="p-4 mb-3 bg-dark text-white"> </h1> -->
+<div class="main">
+<h1 class="p-3 mb-2 bg-dark text-white"> Organizations</h1>
+<!-- <button pButton type="button" label="Add Organization" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;" routerLink="/add" icon="pi pi-plus-circle"></button> -->
+<button routerLink="/add" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;" ><i class="pi pi-plus-circle"></i>Add organization</button><br>
+<br>
+<table border="2" class="table table-striped" >
+<thead>
+    <tr >
+        <th scope="col">No </th>
+        <th scope="col">Name</th>
+        <th scope="col">Alias</th>
+        <th scope="col">University</th>        
+        <th scope="col">Createdon</th>
+        <th scope="col">ModifiedOn</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+        <th scope="col">Employees</th>
+        <th scope="col">Students</th>
+    </tr>
+</thead>
+    <tbody   *ngFor="let org of this.org;let i=index; let isOdd=odd;let isLast=last," class="align-middle" >
+ <tr >     
+<th scope="row">{{i+1}}</th>
+<td><a [routerLink]="['/details',org.id]">{{org.name}}</a> </td> 
+<td>{{org.alias}} </td>
+<td>{{org.university}} </td>
+<td>{{org.createdon | date:'medium'}}</td>
+<td>{{org.modifiedon| date:'medium'}}</td>
+<td><button  type="button" (click)=changeStatus(org.id) [ngClass]="org.isActive?'btn btn-success':'btn btn-danger'">{{org.isActive | status}}</button></td>
+<!-- <td>{{org.isActive |status}}</td>class='btn btn-success'  -->
+
+<td>
+    <i [routerLink]="['/edit',org.id]" class="pi pi-pencil" style="font-size: 2em;"></i>
+    &nbsp;<i (click)="delete(org.id)"class="pi pi-minus-circle" style="font-size: 2em"></i>&nbsp;
+   
+
+<td>
+    <i [routerLink]="['/faculty',org.id,org.name]" class="pi pi-eye" style="font-size: 2em " > </i>
+    
+</td>
+<td>
+    <i [routerLink]="['/students',org.id,org.name]" class="pi pi-users" style="font-size: 2em " ></i>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<router-outlet></router-outlet>
