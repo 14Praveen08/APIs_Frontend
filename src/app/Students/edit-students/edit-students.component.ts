@@ -29,7 +29,7 @@ constructor(private _studentsService:StudentsService,private _activatedRoute:Act
 ngOnInit(): void {
 this.stud_id=parseInt(this._activatedRoute.snapshot.paramMap.get('id'));
 this.inst_id=parseInt(this._activatedRoute.snapshot.paramMap.get('instid'));
-this.inst_name=this._activatedRoute.snapshot.paramMap.get('name')
+this.inst_name=this._activatedRoute.snapshot.paramMap.get('name');
 this._studentsService.getStudent(this.stud_id).subscribe(data=>{this.studentObj=data,this.loadValues(),this.flag=true});
 this.orgService.getAllOrg().subscribe((data:any)=>{this.orgObj=data});
 this.years=[];
@@ -42,7 +42,7 @@ this.years.push({label:'Select Year',value:''});
   editform=new FormGroup({
     id:new FormControl(),
     redgno:new FormControl(),
-    institution_id: new FormControl(),
+    institutionid: new FormControl(),
     fname: new FormControl(),
     lname: new FormControl(),
     dob: new FormControl(),
@@ -53,7 +53,7 @@ this.years.push({label:'Select Year',value:''});
 
   update(){
     this.student=this.editform.value;
-    this._studentsService.updateStudent(this.student).subscribe(data=>{this._router.navigate(['/students',this.stud_id,this.studentObj.org.name])})
+    // this._studentsService.updateStudent(this.student).subscribe(data=>{this._router.navigate(['/students',this.stud_id,this.studentObj.org.name])})
     this._studentsService.updateStudent(this.student).subscribe(data=>{this.stud_id==null?this._router.navigate(['/students',this.inst_id,this.studentObj.org.name]):this._router.navigate(['/allstudents'])})
 }
 
@@ -62,13 +62,13 @@ this.years.push({label:'Select Year',value:''});
   }
   
   organization(id:number){
-    this.editform.patchValue({institution_id:id});
+    this.editform.patchValue({institutionid:id});
   }
 loadValues(){
   this.editform.patchValue({
     id:this.stud_id,
     redgno:this.studentObj.redgno,
-    institution_id:this.studentObj.org.id,
+    institutionid:this.studentObj.org.id,
     fname:this.studentObj.fname,
     lname:this.studentObj.lname,
     dob:this.studentObj.dob,

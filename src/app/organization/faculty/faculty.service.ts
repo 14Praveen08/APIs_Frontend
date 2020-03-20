@@ -6,8 +6,6 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { map, catchError, retry } from 'rxjs/operators';
 import { Roles } from 'src/app/model/Roles';
 import { FacultyObj } from 'src/app/model/FacultyObj';
-import { JsonPipe } from '@angular/common';
-
 
 @Injectable({
   providedIn: 'root'
@@ -40,22 +38,22 @@ export class FacultyService {
   }
   getFacultyByInstitution(id: Number): Observable<FacultyObj[]> {
 
-    return this._httpClient.get<FacultyObj[]>(`${this.base_url}/faculty/institution/${id}`).pipe(map(res=>res),catchError(this.handleError));
+    return this._httpClient.get<FacultyObj[]>(`${this.base_url}/faculty/institution/${id}`).pipe(catchError(this.handleError));
   }
 
 
 
 
   deleteFaculty(id: Number): Observable<any> {
-    return this._httpClient.delete(`${this.base_url}/faculty/${id}`,httpOptions).pipe(map(res=>res));
+    return this._httpClient.delete(`${this.base_url}/faculty/${id}`, httpOptions);
 
   }
   addFaculty(fac: Faculty): Observable<Faculty> {
-    
-    return this._httpClient.post<Faculty>(`${this.base_url}/faculty`, fac).pipe(map(res=>res),catchError(this.handleError));
+
+    return this._httpClient.post<Faculty>(`${this.base_url}/faculty`, fac).pipe(catchError(this.handleError));
   }
   editFaculty(fac: Faculty): Observable<Faculty> {
-    return this._httpClient.put<Faculty>(`${this.base_url}/faculty`, fac).pipe(map(res=>res),catchError(this.handleError));
+    return this._httpClient.put<Faculty>(`${this.base_url}/faculty`, fac).pipe(catchError(this.handleError));
   }
 
 
@@ -66,13 +64,13 @@ export class FacultyService {
 
   }
   getRolesByid(id: number) {
-    return this._httpClient.get<Roles>(`${this.base_url}/role/${id}`).pipe(map((res: any) => res));
+    return this._httpClient.get<Roles>(`${this.base_url}/role/${id}`);
   }
   addRole(role: Roles) {
-    return this._httpClient.post<Roles>(`${this.base_url}/role`, role).pipe(map((res: any) => res));
+    return this._httpClient.post<Roles>(`${this.base_url}/role`, role);
   }
   deleteRole(id: Number) {
-    return this._httpClient.delete(`${this.base_url}/role`).pipe(map((res => console.log(res))));
+    return this._httpClient.delete(`${this.base_url}/role`);
   }
 
 
@@ -85,11 +83,11 @@ export class FacultyService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
+      alert("No Values Present in your particular Selection");
       console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
     }
     // return an observable with a user-facing error message
-    return throwError(
-      'Something bad happened; please try again later.');
+    return throwError("No Value");
   };
 
 }

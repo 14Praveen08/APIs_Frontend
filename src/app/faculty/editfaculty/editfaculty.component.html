@@ -5,7 +5,7 @@
    <p-tabPanel header="Organization" id="o">
       <form [formGroup]="editform" >
       <label>Organization </label>&nbsp;&nbsp;
-      <select (change)="organization($event.target.value)" class="btn btn-dark dropdown-toggle border border-dark text-white" >
+      <select (change)="organization($event.target.value)" class="btn btn-dark dropdown-toggle border border-dark text-white" formControlName="institution_id" >
           <option value="" disabled selected>Select</option>
           <option *ngFor="let org of orgObj;" [value]="org.id">{{this.org.name}}</option>
       </select><br><br>

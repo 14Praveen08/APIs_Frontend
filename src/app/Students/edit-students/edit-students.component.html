@@ -2,10 +2,10 @@
 <div class="main">
 <h1 class="p-2 mb-2 bg-dark text-white">Edit Student Details</h1>
 <p-tabView>
-   <p-tabPanel header="Organization" id="o">
-      <form [formGroup]="editform">
+   <p-tabPanel header="Organization">
+      <form [formGroup]="editform" *ngIf="flag" (ngSubmit)="update()" >
          <label>Organization </label>&nbsp;&nbsp;
-         <select (change)="organization($event.target.value)" class="btn btn-dark dropdown-toggle border border-dark text-white" >
+         <select (change)="organization($event.target.value)" class="btn btn-dark dropdown-toggle border border-dark text-white" formControlName="institutionid">
              <option value="" disabled selected>Select</option>
              <option *ngFor="let org of orgObj;" [value]="org.id">{{this.org.name}}</option>
          </select><br><br>
