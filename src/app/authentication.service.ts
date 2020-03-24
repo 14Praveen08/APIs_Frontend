@@ -10,11 +10,18 @@ export class AuthenticationService {
 
   authenticate(username, password) {
     if (username === "admin" && password === "admin") {
-      
+      sessionStorage.setItem('username',username)
       return true;
     } else {
       return false;
     }
+  }
+  isUserLoggedIn(){
+    let user = sessionStorage.getItem('username')
+    return !(user === null)
+  }
+  logOut(){
+    sessionStorage.removeItem('username')
   }
 
  

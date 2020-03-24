@@ -10,7 +10,7 @@ export class LoginComponent implements OnInit {
 
   username = 'admin';
   password = '';
-  invalidLogin = false
+  invalidLogin = false;
   constructor(private _auth:AuthenticationService,
               private route:Router) { }
 
@@ -19,9 +19,11 @@ export class LoginComponent implements OnInit {
 check(){
   if(this._auth.authenticate(this.username,this.password)){
     this.route.navigate(['home']);
+    this.invalidLogin=false;
 
   }
   else{
+    this.invalidLogin=true;
     alert("Invalid Password")
 
   }

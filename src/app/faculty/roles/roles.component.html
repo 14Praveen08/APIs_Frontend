@@ -1,4 +1,4 @@
-<app-sidebar></app-sidebar>
+<app-header></app-header>
 <div class="main">
     <h1 class="p-3 mb-2 bg-dark text-white">Faculty Roles</h1>
 
@@ -7,25 +7,27 @@
 
         <table border="2" class="table table-striped">
             <thead>
-            <tr>
-                <th>No</th>
-                <th>Name</th>
-            </tr></thead>
+                <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
 
 
 
-<tbody>
-    <tr *ngFor="let r of role;let i=index">
-        <td>{{i+1}}</td>
-        <td>{{r.name}}</td>
-    </tr>
-</tbody>
+            <tbody>
+                <tr *ngFor="let r of role;let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{r.name}}</td>
+                </tr>
+            </tbody>
 
         </table>
 
     </div>
     <div class="dropdown show">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             Add Role
         </a>
 

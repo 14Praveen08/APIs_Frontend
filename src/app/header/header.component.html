@@ -1,0 +1,23 @@
+<p-sidebar [(visible)]="sidebar" position="left" [style]="{width:'20em'}">
+    <aside> <button class="p-3 mb-2 bg-dark text-white btn-block" [routerLink]="['/faculty'] ">Faculties</button>
+    </aside>
+    <aside> <button class="p-3 mb-2 bg-dark text-white btn-block" [routerLink]="['/students'] ">Students</button>
+    </aside>
+    <aside> <button class="p-3 mb-2 bg-dark text-white btn-block" [routerLink]="['/roles'] ">Roles</button></aside>
+</p-sidebar>
+<h1 class='p-3 mb-2 bg-dark text-white' style="font-size: 32px;">
+    <i *ngIf="_auth.isUserLoggedIn()" (click)="sidebar=true" label="Show" class="pi pi-align-justify"
+        style="font-size: 32px;"></i>
+    <img src="..\assets\images\revature-logo.png" *ngIf="_auth.isUserLoggedIn()" [routerLink]="['/home']">
+
+    <span style="float:right;">
+        <!--Placed Image Instead of Button 
+            <button class='bg-dark text-white'><i *ngIf="_auth.isUserLoggedIn()" [routerLink]="['/home']" class="pi pi-home"
+                style="font-size: 25px;">Home</i></button>
+        &nbsp;&nbsp;
+         -->
+        <button class='bg-dark text-white'><i *ngIf="_auth.isUserLoggedIn()" [routerLink]="['/logout']"
+                class="pi pi-sign-out" style="font-size: 25px;">LogOut</i></button>
+
+    </span>
+</h1>

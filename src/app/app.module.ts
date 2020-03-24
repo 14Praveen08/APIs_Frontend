@@ -24,7 +24,7 @@ import { RouterModule } from '@angular/router';
 import { FacultyComponent } from './organization/faculty/faculty.component';
 import { FacultyService } from './organization/faculty/faculty.service';
 import { AllFacultyComponent } from './faculty/all-faculty/all-faculty.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { HeaderComponent } from './header/header.component';
 import { AddFacultyComponent } from './faculty/add-faculty/add-faculty.component';
 import { RolesComponent } from './faculty/roles/roles.component';
 import { EditfacultyComponent } from './faculty/editfaculty/editfaculty.component';
@@ -45,6 +45,7 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {DropdownModule} from 'primeng/dropdown';
 import {CalendarModule} from 'primeng/calendar';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,7 @@ import {CalendarModule} from 'primeng/calendar';
        
     FacultyComponent,   
     AllFacultyComponent,   
-    SidebarComponent, AddFacultyComponent, RolesComponent, EditfacultyComponent, AllStudentsComponent, OrgStudentsComponent, AddStudentsComponent, EditStudentsComponent,  
+    AddFacultyComponent, RolesComponent, EditfacultyComponent, AllStudentsComponent, OrgStudentsComponent, AddStudentsComponent, EditStudentsComponent, HeaderComponent, LogoutComponent,  
   ],
   imports: [
     BrowserModule,
