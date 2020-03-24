@@ -19,7 +19,7 @@ import { FacultyObj } from 'src/app/model/FacultyObj';
 export class FacultyService {
 
 
-  private base_url = "http://localhost:8081/emp";
+  private base_url = "http://localhost:8080/core";
 
   constructor(private _httpClient: HttpClient) { }
   faculty: Faculty[];

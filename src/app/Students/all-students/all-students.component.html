@@ -2,22 +2,23 @@
 <div class="main">
     <h1 class="p-3 mb-2 bg-dark text-white">Students</h1>
     <div>
-    <label>Show by Year </label>&nbsp;&nbsp;<select (change)="year($event.target.value)"
-    class="btn btn-dark dropdown-toggle border border-dark text-white" >
-    <option *ngFor="let y of years;" [value]="y.value">{{this.y.label}}</option>
-    </select>
-    <label>Show by Institution</label>&nbsp;&nbsp;<select (change)="organization($event.target.value)"
-   class="btn btn-dark dropdown-toggle border border-dark text-white">
-  <option value="0">All College</option>
-   <option *ngFor="let org of orgObj;" [value]="org.id">{{this.org.name}}</option>
-</select>
-    
-    <button routerLink="/addStudent" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;">Add Students</button><br>
-</div>
+        <label>Show by Year </label>&nbsp;&nbsp;<select (change)="year($event.target.value)"
+            class="btn btn-dark dropdown-toggle border border-dark text-white">
+            <option *ngFor="let y of years;" [value]="y.value">{{this.y.label}}</option>
+        </select>
+        <label>Show by Institution</label>&nbsp;&nbsp;<select (change)="organization($event.target.value)"
+            class="btn btn-dark dropdown-toggle border border-dark text-white">
+            <option value="0">All College</option>
+            <option *ngFor="let org of orgObj;" [value]="org.id">{{this.org.name}}</option>
+        </select>
+
+        <button routerLink="/addStudent" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;">Add
+            Students</button><br>
+    </div>
     <div>
         <table class="table table-striped" border="2">
             <thead>
-                <tr *ngIf=flag>
+                <tr>
                     <th>No</th>
                     <th>FirstName</th>
                     <th>LastName</th>
@@ -31,21 +32,23 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody *ngFor="let i of this.students; let j=index;">
-                <tr>
-                <th>{{j+1}}</th>
-                <td>{{i.fname}}</td>
-                <td>{{i.lname}}</td>
-                <td>{{i.org.name}}</td>
-                <td>{{i.year}}</td>
-                <td>{{i.dob}}</td>
-                <td>{{i.email}}</td>
-                <td>{{i.mobileno}}</td>
-                <td>{{i.createdon | date:'medium'}}</td>
-                <td>{{i.modifiedon | date:'medium'}}</td>
-                <td><i [routerLink]="['/editStudent',i.id,i.org.id]" class="pi pi-pencil" style="font-size: 2em"></i>
-                    &nbsp;&nbsp;<i  (click)="delete(i.id)" class="pi pi-trash" style="font-size: 2em"></i></td>
-                </tr>   
+            <tr *ngIf=!flag><b style="color: red;">No Records Found!!!</b></tr>
+            <tbody *ngIf=flag class="align-middle" border="2">
+                <tr *ngFor="let i of this.students; let j=index;">
+                    <th>{{j+1}}</th>
+                    <td>{{i.fname}}</td>
+                    <td>{{i.lname}}</td>
+                    <td>{{i.org.name}}</td>
+                    <td>{{i.year}}</td>
+                    <td>{{i.dob}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.mobileno}}</td>
+                    <td>{{i.createdon | date:'medium'}}</td>
+                    <td>{{i.modifiedon | date:'medium'}}</td>
+                    <td><i [routerLink]="['/editStudent',i.id,i.org.id]" class="pi pi-pencil"
+                            style="font-size: 2em"></i>
+                        &nbsp;&nbsp;<i (click)="delete(i.id)" class="pi pi-trash" style="font-size: 2em"></i></td>
+                </tr>
             </tbody>
         </table>
     </div>

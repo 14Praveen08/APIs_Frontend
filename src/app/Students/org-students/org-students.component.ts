@@ -3,6 +3,7 @@ import { StudentsService } from '../students.service';
 import{ActivatedRoute,Router} from '@angular/router'
 import { StudentObj } from 'src/app/model/StudentObj';
 import { SelectItem } from 'primeng/api/selectitem';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-org-students',
@@ -12,6 +13,7 @@ import { SelectItem } from 'primeng/api/selectitem';
 })
 export class OrgStudentsComponent implements OnInit {
 inst_id;
+flag=false;
 inst_name;
 students:StudentObj[];
 ask;
@@ -31,10 +33,10 @@ selectedyear;
     this.load();
   }
   load(){
-    this._studentsService.getStudentByInstitution(this.inst_id).subscribe(data=>{this.students=data});
+    this._studentsService.getStudentByInstitution(this.inst_id).subscribe(data=>{this.students=data,_.isEmpty(this.students)?this.flag=true:this.flag=true});
   }
   reload(){
-    this._studentsService.getStudentByYear(this.selectedyear).subscribe(data=>{this.students=data});
+    this._studentsService.getStudentByYear(this.selectedyear).subscribe(data=>{this.students=data,_.isEmpty(this.students)?this.flag=true:this.flag=true});
   }
 delete(id:number){
   this.ask=confirm("Are You Sure?");

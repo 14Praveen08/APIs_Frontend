@@ -12,7 +12,7 @@ export class StudentsService {
 
   constructor(private _httpClient:HttpClient) { }
 
-  private base_url = "http://localhost:8082/stud";
+  private base_url = "http://localhost:8080/core";
 
   getAllStudents():Observable<StudentObj[]> {
     return this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud`);

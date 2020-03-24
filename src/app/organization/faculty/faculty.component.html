@@ -21,12 +21,13 @@
                <th>Action</th>
             </tr></thead>
             
-         
-         <tbody *ngFor="let i of this.faculty ;let j=index;">
+         <tr *ngIf=!flag><b style="color: red;">No Records Found!!!</b></tr>
+         <tbody  *ngIf=flag class="align-middle" border="2">
+            <tr *ngFor="let i of this.faculty ;let j=index;">
             <th>{{j+1}}</th>
             <td> {{i.first_name}}</td>
             <td>{{i.last_name}}</td>
-             <td>{{i.roles.name}}</td> 
+            <td>{{i.roles.name}}</td> 
             <td>{{i.dob}}</td>
             <td>{{i.email}}</td>
             <td>{{i.mobile_no}}</td>
@@ -34,7 +35,7 @@
             <td>{{i.modifiedon |date:'medium'}}</td>
             <td><i [routerLink]="['/editfaculty',i.id,this.id,this.name]" class="pi pi-user-edit" style="font-size: 2em"></i> 
             &nbsp;&nbsp;<i  (click)="delete(i.id)" class="pi pi-trash" style="font-size: 2em"></i></td>
-               
+         </tr>      
          </tbody>
       </table>
 

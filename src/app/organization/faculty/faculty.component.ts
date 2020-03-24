@@ -3,6 +3,7 @@ import { FacultyService } from './faculty.service';
 import { ActivatedRoute } from '@angular/router';
 import { Roles } from 'src/app/model/Roles';
 import {TableModule} from 'primeng/table';
+import * as _ from 'lodash';
 @Component({
   selector: 'app-faculty',
   templateUrl: './faculty.component.html',
@@ -28,7 +29,7 @@ export class FacultyComponent implements OnInit {
 getbyInst(){
   this.id=parseInt(this._activatedroute.snapshot.paramMap.get('id'));
   this.name=this._activatedroute.snapshot.paramMap.get('name');
-  this.fac.getFacultyByInstitution(this.id).subscribe(data =>{this.faculty=data;this.faculty==null?this.flag=false:this.flag=true});//console.log(this.faculty) ;
+  this.fac.getFacultyByInstitution(this.id).subscribe(data =>{ this.faculty = data, _.isEmpty(this.faculty) ? this.flag = false : this.flag = true });//console.log(this.faculty) ;
   
   
 }

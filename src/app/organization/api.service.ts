@@ -10,7 +10,7 @@ export class ApiService {
   _org: any;
    body:any;
 
-  private org_url="http://localhost:8080/api/organization";
+  private org_url="http://localhost:8080/core/organization";
 
 
   constructor(private _httpClient: HttpClient) { }
