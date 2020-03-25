@@ -1,13 +1,15 @@
-<p-sidebar [(visible)]="sidebar" position="left" [style]="{width:'20em'}">
+<div>
+ <!-- Placed in Header
+    <p-sidebar [(visible)]="sidebar" position="left" [style]="{width:'20em'}">
     <aside> <button class="p-3 mb-2 bg-dark text-white btn-block" [routerLink]="['/faculty'] ">Faculties</button>
     </aside>
     <aside> <button class="p-3 mb-2 bg-dark text-white btn-block" [routerLink]="['/students'] ">Students</button>
     </aside>
     <aside> <button class="p-3 mb-2 bg-dark text-white btn-block" [routerLink]="['/roles'] ">Roles</button></aside>
-</p-sidebar>
+</p-sidebar> -->
 <h1 class='p-3 mb-2 bg-dark text-white' style="font-size: 32px;">
-    <i *ngIf="_auth.isUserLoggedIn()" (click)="sidebar=true" label="Show" class="pi pi-align-justify"
-        style="font-size: 32px;"></i>
+    <!-- <i *ngIf="_auth.isUserLoggedIn()" (click)="sidebar=true" label="Show" class="pi pi-align-justify"
+        style="font-size: 32px;"></i> -->
     <img src="..\assets\images\revature-logo.png" *ngIf="_auth.isUserLoggedIn()" [routerLink]="['/home']">
 
     <span style="float:right;">
@@ -16,8 +18,17 @@
                 style="font-size: 25px;">Home</i></button>
         &nbsp;&nbsp;
          -->
-        <button class='bg-dark text-white'><i *ngIf="_auth.isUserLoggedIn()" [routerLink]="['/logout']"
-                class="pi pi-sign-out" style="font-size: 25px;">LogOut</i></button>
+         <button class='bg-dark text-white' *ngIf="_auth.isUserLoggedIn()" [routerLink]="['/faculty']"
+        style="font-size: 25px;">Faculties</button>
+            &nbsp;
+        <button class='bg-dark text-white' *ngIf="_auth.isUserLoggedIn()" [routerLink]="['/students']"
+        style="font-size: 25px;">Students</button>
+            &nbsp;
+        <button class='bg-dark text-white' *ngIf="_auth.isUserLoggedIn()" [routerLink]="['/roles']"
+            style="font-size: 25px;">Roles</button>
+            &nbsp;
+        <button class='bg-dark text-white' *ngIf="_auth.isUserLoggedIn()" [routerLink]="['/logout']"
+            style="font-size: 25px;">LogOut</button>
 
     </span>
 </h1>

@@ -22,6 +22,12 @@ export class ApiService {
       return this._httpClient.get<organization[]>(this.org_url).pipe(map((res:any)=>res));
     }
 
+    //api call to list all organization those are active ,return type :List of objects
+
+     getAllOrgActive():Observable<organization[]>{
+      return this._httpClient.get<organization[]>(`${this.org_url}/active`).pipe(map((res:any)=>res));
+    }
+
 
     //api call to get organization by id, input : Integer id,return type:org object
 

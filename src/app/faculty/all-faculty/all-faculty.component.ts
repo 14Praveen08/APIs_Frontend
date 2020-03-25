@@ -20,7 +20,7 @@ export class AllFacultyComponent implements OnInit {
   ask;
   selectedInst;
   constructor(private orgService: ApiService, private _facultyService: FacultyService) {
-    this.orgService.getAllOrg().subscribe((data: any) => { this.orgObj = data });
+    this.orgService.getAllOrgActive().subscribe((data: any) => { this.orgObj = data });
 
   }
 

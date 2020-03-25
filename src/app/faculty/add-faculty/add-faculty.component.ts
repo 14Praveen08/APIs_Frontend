@@ -29,7 +29,7 @@ export class AddFacultyComponent implements OnInit {
     this.orgid = parseInt(this._activatedroute.snapshot.paramMap.get('id'));
     this.orgname = this._activatedroute.snapshot.paramMap.get('name');
     this.facultyService.getRoles().subscribe((data: any) => { this.roles = data });
-    this.orgService.getAllOrg().subscribe((data: any) => { this.orgObj = data });
+    this.orgService.getAllOrgActive().subscribe((data: any) => { this.orgObj = data });
 
 
   }

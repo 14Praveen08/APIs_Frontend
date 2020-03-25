@@ -26,7 +26,7 @@ export class AddStudentsComponent implements OnInit {
   constructor(private _activatedRoute: ActivatedRoute, private studService: StudentsService, private router: Router, private orgService: ApiService) {
     this.inst_id=parseInt(this._activatedRoute.snapshot.paramMap.get('id'));
     this.inst_name=this._activatedRoute.snapshot.paramMap.get('name');
-    this.orgService.getAllOrg().subscribe((data: any) => { this.orgObj = data });
+    this.orgService.getAllOrgActive().subscribe((data: any) => { this.orgObj = data });
     }
   ngOnInit(): void {
     this.form();
