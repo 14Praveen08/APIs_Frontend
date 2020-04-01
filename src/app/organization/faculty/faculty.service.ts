@@ -29,21 +29,17 @@ export class FacultyService {
   header = new HttpHeaders({ 'Content-Type': 'application/text; charset=utf-8' });
 
   getAllFactulty() {
-    return this._httpClient.get(`${this.base_url}/faculty`).pipe(map((res: any) => res));
+    return this._httpClient.get(`${this.base_url}/faculty`).pipe(map((res: any) => res.data));
   }
 
   getFaculty(id: Number) {
-    return this._httpClient.get(`${this.base_url}/faculty/${id}`).pipe(map((res: any) => res));
+    return this._httpClient.get(`${this.base_url}/faculty/${id}`).pipe(map((res: any) => res.data));
 
   }
   getFacultyByInstitution(id: Number): Observable<FacultyObj[]> {
 
-    return this._httpClient.get<FacultyObj[]>(`${this.base_url}/faculty/institution/${id}`).pipe(catchError(this.handleError));
+    return this._httpClient.get<FacultyObj[]>(`${this.base_url}/faculty/institution/${id}`).pipe(map((res: any) => res.data));
   }
-
-
-
-
   deleteFaculty(id: Number): Observable<any> {
     return this._httpClient.delete(`${this.base_url}/faculty/${id}`, httpOptions);
 
@@ -60,7 +56,7 @@ export class FacultyService {
 
   //htpp calls for Roles Api
   getRoles(): Observable<Roles> {
-    return this._httpClient.get<Roles[]>(`${this.base_url}/role`).pipe(map((res: any) => this.roles = res));
+    return this._httpClient.get<Roles[]>(`${this.base_url}/role`).pipe(map((res: any) => this.roles = res.data));
 
   }
   getRolesByid(id: number) {

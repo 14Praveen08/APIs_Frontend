@@ -26,7 +26,7 @@ export class AllStudentsComponent implements OnInit {
   orgObj: organization[];
 
   constructor(private orgService: ApiService,private _studentService:StudentsService,private _activatedroute:ActivatedRoute) { 
-    this.orgService.getAllOrgActive().subscribe((data: any) => { this.orgObj = data });
+    this.orgService.getAllOrg().subscribe((data: any) => { this.orgObj = data });
 
   }
 

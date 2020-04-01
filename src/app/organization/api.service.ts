@@ -19,20 +19,20 @@ export class ApiService {
     //api call to list all organization ,return type :List of objects
 
     getAllOrg():Observable<organization[]>{
-      return this._httpClient.get<organization[]>(this.org_url).pipe(map((res:any)=>res));
+      return this._httpClient.get<organization[]>(this.org_url).pipe(map((res:any)=>res.data));
     }
 
     //api call to list all organization those are active ,return type :List of objects
 
      getAllOrgActive():Observable<organization[]>{
-      return this._httpClient.get<organization[]>(`${this.org_url}/active`).pipe(map((res:any)=>res));
+      return this._httpClient.get<organization[]>(`${this.org_url}/active`).pipe(map((res:any)=>res.data));
     }
 
 
     //api call to get organization by id, input : Integer id,return type:org object
 
     getOrg(id:Number):Observable<organization>{
-     this._org=this._httpClient.get<organization>(`${this.org_url}/${id}`).pipe();
+     this._org=this._httpClient.get<organization>(`${this.org_url}/${id}`).pipe(map((res:any)=>res.data));
       return this._org;
           }
 
@@ -41,7 +41,7 @@ export class ApiService {
 
    addOrg(_org:Object):Observable<organization>
    {
-    return this._httpClient.post<organization>(this.org_url,_org).pipe();
+    return this._httpClient.post<organization>(this.org_url,_org);
    }
 
 
@@ -50,7 +50,7 @@ export class ApiService {
 
   editOrg(_org:Object):Observable<organization>
    {
-     return this._httpClient.put<organization>(this.org_url,_org).pipe();
+     return this._httpClient.put<organization>(this.org_url,_org).pipe(map((res:any)=>res.data));
    }
 
 

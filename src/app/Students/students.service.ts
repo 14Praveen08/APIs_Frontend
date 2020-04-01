@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import{Student} from 'src/app/model/Student';
 import{HttpClient,HttpErrorResponse} from '@angular/common/http';
-import {Observable,throwError} from 'rxjs';
+import { map} from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
 import { StudentObj } from '../model/StudentObj';
 import {catchError} from 'rxjs/operators';
 
@@ -15,20 +16,20 @@ export class StudentsService {
   private base_url = "http://localhost:8080/core";
 
   getAllStudents():Observable<StudentObj[]> {
-    return this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud`);
+    return this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud`).pipe(map((res: any) => res.data));
   }
 
   getStudent(id: number):Observable<StudentObj> {
-    return  this._httpClient.get<StudentObj>(`${this.base_url}/getstud/${id}`);
+    return  this._httpClient.get<StudentObj>(`${this.base_url}/getstud/${id}`).pipe(map((res: any) => res.data));
   }
   getStudentByInstitution(inst_id: number):Observable<StudentObj[]> {
-    return  this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud/institution/${inst_id}`);
+    return  this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud/institution/${inst_id}`).pipe(map((res: any) => res.data),catchError(this.handleError));
   }
   getStudentByInstYear(inst_id: number, year: number):Observable<StudentObj[]> {
-    return this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud/instyearwise/${inst_id}/${year}`).pipe(catchError(this.handleError));
+    return this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud/instyearwise/${inst_id}/${year}`).pipe(map((res: any) => res.data),catchError(this.handleError));
   }
   getStudentByYear(year: number):Observable<StudentObj[]>{
-    return this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud/year/${year}`);
+    return this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud/year/${year}`).pipe(map((res: any) => res.data),catchError(this.handleError));
   }
   addStudent(obj:Student):Observable<Student> {
     console.log(obj);
