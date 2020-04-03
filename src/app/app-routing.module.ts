@@ -1,25 +1,25 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FormComponent } from './organization/update/form.component';
-import { AddComponent } from './organization/add/add.component';
-import { DetailsComponent } from './organization/details/details.component';
-import { OrganizationComponent } from '../app/organization/organization.component';
-import { LoginComponent } from './login/login.component'
+import { FormComponent } from './Layout/organization/update/form.component';
+import { AddComponent } from './Layout/organization/add/add.component';
+import { DetailsComponent } from './Layout/organization/details/details.component';
+import { OrganizationComponent } from './Layout/organization/organization.component';
+import { LoginComponent } from './Layout/login/login.component'
 
 
 
-import { FacultyComponent } from './organization/faculty/faculty.component';
-import { AllFacultyComponent } from './faculty/all-faculty/all-faculty.component';
-import { AddFacultyComponent } from './faculty/add-faculty/add-faculty.component';
-import { RolesComponent } from './faculty/roles/roles.component';
+import { FacultyComponent } from './Layout/organization/faculty/faculty.component';
+import { AllFacultyComponent } from './Layout/faculty/all-faculty/all-faculty.component';
+import { AddFacultyComponent } from './Layout/faculty/add-faculty/add-faculty.component';
+import { RolesComponent } from './Layout/roles/roles.component';
 
-import { EditfacultyComponent } from './faculty/editfaculty/editfaculty.component';
-import { OrgStudentsComponent } from './Students/org-students/org-students.component';
-import { AllStudentsComponent } from './Students/all-students/all-students.component';
-import { EditStudentsComponent } from './Students/edit-students/edit-students.component';
-import { AddStudentsComponent } from './Students/add-students/add-students.component';
-import { AuthGuard } from './auth.guard';
-import { LogoutComponent } from './logout/logout.component';
+import { EditfacultyComponent } from './Layout/faculty/editfaculty/editfaculty.component';
+import { OrgStudentsComponent } from './Layout/Students/org-students/org-students.component';
+import { AllStudentsComponent } from './Layout/Students/all-students/all-students.component';
+import { EditStudentsComponent } from './Layout/Students/edit-students/edit-students.component';
+import { AddStudentsComponent } from './Layout/Students/add-students/add-students.component';
+import { AuthGuard } from './Authentication/auth.guard';
+import { LogoutComponent } from './Layout/logout/logout.component';
 
 
 const routes: Routes = [
