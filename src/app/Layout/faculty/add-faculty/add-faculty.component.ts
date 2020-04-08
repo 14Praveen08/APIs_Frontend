@@ -24,7 +24,7 @@ export class AddFacultyComponent implements OnInit {
   facultyObj: Faculty;
   orgObj: organization[];
   facultyform: FormGroup;
-  constructor(private _activatedroute: ActivatedRoute, private roleService: RoleService,private facultyService: FacultyService, private router: Router, private orgService: ApiService) {
+  constructor(private _activatedroute: ActivatedRoute, private roleService: RoleService, private facultyService: FacultyService, private router: Router, private orgService: ApiService) {
 
 
     this.orgid = parseInt(this._activatedroute.snapshot.paramMap.get('id'));
@@ -60,7 +60,7 @@ export class AddFacultyComponent implements OnInit {
   save() {
 
     this.facultyObj = this.facultyform.value;
-    this.facultyService.addFaculty(this.facultyObj).subscribe(data =>{ this.orgid && this.orgname!=null? this.router.navigate(['/faculty',this.orgid,this.orgname]): this.router.navigate(['/faculty'])});
+    this.facultyService.addFaculty(this.facultyObj).subscribe(data => { this.orgid && this.orgname != null ? this.router.navigate(['/faculty', this.orgid, this.orgname]) : this.router.navigate(['/faculty']) });
 
   }
   role(id: number) {

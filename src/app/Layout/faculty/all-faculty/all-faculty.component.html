@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="main">
-   <h1 class="p-3 mb-2 bg-dark text-white">Employees</h1>
+   <h1 class="p-3 mb-2 bg-dark text-white">Faculties</h1>
    <div>
       <label>Show by Institution</label>&nbsp;&nbsp;<select (change)="organization($event.target.value)"
          class="btn btn-dark dropdown-toggle border border-dark text-white">
@@ -27,7 +27,7 @@
             </tr>
 
          </thead>
-         <tr *ngIf=!flag><b style="color: red;">No Records Found!!!</b></tr>
+         <tr *ngIf=!flag><b style="color: red;">No Faculties Found!!!</b></tr>
          <tbody *ngIf=flag class="align-middle" border="2">
             <tr *ngFor="let i of this.faculty ;let j=index;">
                <th>{{j+1}}</th>

@@ -8,30 +8,30 @@ import { RoleService } from 'src/app/Services/role.service';
   selector: 'app-roles',
   templateUrl: './roles.component.html',
   styleUrls: ['./roles.component.css'],
-  providers:[RoleService]
+  providers: [RoleService]
 })
 export class RolesComponent implements OnInit {
-  role:Roles[];
-  flag=false;
-  constructor(private roleService:RoleService) { }
-name:String;
-role1:Roles;
+  role: Roles[];
+  flag = false;
+  constructor(private roleService: RoleService) { }
+  name: String;
+  role1: Roles;
   ngOnInit(): void {
-    
-this.load();
+
+    this.load();
   }
 
-  load(){
-    this.roleService.getRoles().subscribe((data:any)=>{this.role=data,this.role==null?this.flag=false:this.flag=true});
-    
+  load() {
+    this.roleService.getRoles().subscribe((data: any) => { this.role = data, this.role == null ? this.flag = false : this.flag = true });
+
     console.log();
   }
-  addrole=new FormGroup({
-    name:new FormControl
+  addrole = new FormGroup({
+    name: new FormControl
   });
- add(){   
- this.role1=this.addrole.value;
-console.log(this.role1);
-  this.roleService.addRole(this.role1).subscribe((data:any)=>{this.load()});
- }
+  add() {
+    this.role1 = this.addrole.value;
+    console.log(this.role1);
+    this.roleService.addRole(this.role1).subscribe((data: any) => { this.load() });
+  }
 }

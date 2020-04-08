@@ -9,12 +9,12 @@ import { AuthenticationService } from '../../Authentication/authentication.servi
 export class HeaderComponent implements OnInit {
   sidebar;
 
-  constructor(public _auth:AuthenticationService) { }
+  constructor(public _auth: AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
-  check(){
+  check() {
     return this._auth.isUserLoggedIn()
   }
 

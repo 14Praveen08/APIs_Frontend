@@ -32,7 +32,7 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tr *ngIf=!flag><b style="color: red;">No Records Found!!!</b></tr>
+            <tr *ngIf=!flag><b style="color: red;">No Students Found!!!</b></tr>
             <tbody *ngIf=flag class="align-middle" border="2">
                 <tr *ngFor="let i of this.students; let j=index;">
                     <th>{{j+1}}</th>

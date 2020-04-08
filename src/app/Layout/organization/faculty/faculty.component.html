@@ -1,13 +1,14 @@
 <app-header></app-header>
 <div class="main">
    <h1 class="p-3 mb-2 bg-dark text-white"> {{name}} Employees </h1>
-   <button [routerLink]="['/addFaculties',this.id,this.name]" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;">Add Faculty</button>
+   <button [routerLink]="['/addFaculties',this.id,this.name]" class="p-2 mb-2 btn-dark btn-btn-lg"
+      style="float: right;">Add Faculty</button>
    <div *ngIf="flag">
 
       <table class="table table-striped" border="2">
-         
-           
-            <thead>
+
+
+         <thead>
             <tr>
                <th>No</th>
                <th>FirstName</th>
@@ -19,23 +20,25 @@
                <th>CreatedOn</th>
                <th>ModifiedOn</th>
                <th>Action</th>
-            </tr></thead>
-            
+            </tr>
+         </thead>
+
          <tr *ngIf=!flag><b style="color: red;">No Records Found!!!</b></tr>
-         <tbody  *ngIf=flag class="align-middle" border="2">
+         <tbody *ngIf=flag class="align-middle" border="2">
             <tr *ngFor="let i of this.faculty ;let j=index;">
-            <th>{{j+1}}</th>
-            <td> {{i.first_name}}</td>
-            <td>{{i.last_name}}</td>
-            <td>{{i.roles.name}}</td> 
-            <td>{{i.dob}}</td>
-            <td>{{i.email}}</td>
-            <td>{{i.mobile_no}}</td>
-            <td>{{i.createdon |date:'medium'}}</td>
-            <td>{{i.modifiedon |date:'medium'}}</td>
-            <td><i [routerLink]="['/editfaculty',i.id,this.id,this.name]" class="pi pi-user-edit" style="font-size: 2em"></i> 
-            &nbsp;&nbsp;<i  (click)="delete(i.id)" class="pi pi-trash" style="font-size: 2em"></i></td>
-         </tr>      
+               <th>{{j+1}}</th>
+               <td> {{i.first_name}}</td>
+               <td>{{i.last_name}}</td>
+               <td>{{i.roles.name}}</td>
+               <td>{{i.dob}}</td>
+               <td>{{i.email}}</td>
+               <td>{{i.mobile_no}}</td>
+               <td>{{i.createdon |date:'medium'}}</td>
+               <td>{{i.modifiedon |date:'medium'}}</td>
+               <td><i [routerLink]="['/editfaculty',i.id,this.id,this.name]" class="pi pi-user-edit"
+                     style="font-size: 2em"></i>
+                  &nbsp;&nbsp;<i (click)="delete(i.id)" class="pi pi-trash" style="font-size: 2em"></i></td>
+            </tr>
          </tbody>
       </table>
 

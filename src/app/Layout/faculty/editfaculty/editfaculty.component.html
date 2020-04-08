@@ -15,11 +15,11 @@
       <p-tabPanel header="Personal Details">
          <form [formGroup]="editform" (ngSubmit)="update()">
             <label>FirstName</label>&nbsp;<input type="text" formControlName="first_name" required> <br><br>
-            <label>LastName</label>&nbsp;<input type="text" formControlName="last_name" required/><br><br>
-            <label>DateOfBirth</label>&nbsp;<input type="date" formControlName="dob"required /><br><br>
+            <label>LastName</label>&nbsp;<input type="text" formControlName="last_name" required /><br><br>
+            <label>DateOfBirth</label>&nbsp;<input type="date" formControlName="dob" required /><br><br>
             <label>EmployeeId</label>&nbsp;<input type="text" formControlName="employee_id" required><br><br>
-            <label>Email</label>&nbsp;<input type="email" formControlName="email" required/><br><br>
-            <label>MobileNo</label>&nbsp;<input type="tel" formControlName="mobile_no" required/><br><br>
+            <label>Email</label>&nbsp;<input type="email" formControlName="email" required /><br><br>
+            <label>MobileNo</label>&nbsp;<input type="tel" formControlName="mobile_no" required /><br><br>
             <label>Role </label>&nbsp;&nbsp;
             <select (change)="role($event.target.value)"
                class="btn btn-dark dropdown-toggle border border-dark text-white" formControlName="role_id">

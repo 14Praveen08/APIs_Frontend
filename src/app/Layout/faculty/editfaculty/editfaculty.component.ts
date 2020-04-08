@@ -26,7 +26,7 @@ export class EditfacultyComponent implements OnInit {
   roles: Roles[];
   orgObj: organization[];
   error;
-  constructor(private activatedRoute: ActivatedRoute,private roleService: RoleService,private facultyService: FacultyService, private orgService: ApiService, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute, private roleService: RoleService, private facultyService: FacultyService, private orgService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
