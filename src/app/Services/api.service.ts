@@ -32,7 +32,8 @@ export class ApiService {
     //api call to get organization by id, input : Integer id,return type:org object
 
     getOrg(id:Number):Observable<organization>{
-     return this._org=this._httpClient.get<organization>(`${this.org_url}/${id}`);
+      let id1= id.toString();
+     return this._httpClient.get<organization>(`${this.org_url}/${id1}`).pipe(map((res:any)=>res.data));
     }
 
 
@@ -80,5 +81,3 @@ export class ApiService {
   };
 
    }
-
-

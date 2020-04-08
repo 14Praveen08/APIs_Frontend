@@ -20,6 +20,7 @@ import { EditStudentsComponent } from './Layout/Students/edit-students/edit-stud
 import { AddStudentsComponent } from './Layout/Students/add-students/add-students.component';
 import { AuthGuard } from './Authentication/auth.guard';
 import { LogoutComponent } from './Layout/logout/logout.component';
+import { FacdetailsComponent } from './Layout/faculty/facdetails/facdetails.component';
 
 
 const routes: Routes = [
@@ -54,7 +55,11 @@ const routes: Routes = [
     component: DetailsComponent,
     canActivate:[AuthGuard]
   },
-
+  {
+    path: "facdetails/:id",
+    component: FacdetailsComponent,
+    canActivate:[AuthGuard]
+  },
   {
     path: "faculty/:id/:name",
     component: FacultyComponent,

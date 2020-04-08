@@ -11,14 +11,11 @@
          <thead>
             <tr>
                <th>No</th>
-               <th>FirstName</th>
-               <th>LastName</th>
+               <th>Name</th>
                <th>Role</th>
                <th>DateOfBirth</th>
                <th>Email</th>
                <th>Mobile</th>
-               <th>CreatedOn</th>
-               <th>ModifiedOn</th>
                <th>Action</th>
             </tr>
          </thead>
@@ -27,14 +24,11 @@
          <tbody *ngIf=flag class="align-middle" border="2">
             <tr *ngFor="let i of this.faculty ;let j=index;">
                <th>{{j+1}}</th>
-               <td> {{i.first_name}}</td>
-               <td>{{i.last_name}}</td>
+               <td><a [routerLink]="['/facdetails',i.id]">{{i.first_name}}</a></td>
                <td>{{i.roles.name}}</td>
                <td>{{i.dob}}</td>
                <td>{{i.email}}</td>
                <td>{{i.mobile_no}}</td>
-               <td>{{i.createdon |date:'medium'}}</td>
-               <td>{{i.modifiedon |date:'medium'}}</td>
                <td><i [routerLink]="['/editfaculty',i.id,this.id,this.name]" class="pi pi-user-edit"
                      style="font-size: 2em"></i>
                   &nbsp;&nbsp;<i (click)="delete(i.id)" class="pi pi-trash" style="font-size: 2em"></i></td>

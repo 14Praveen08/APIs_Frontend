@@ -1,0 +1,42 @@
+<app-header></app-header>
+<div class="main">
+    <div *ngIf=flag>
+        <h1 class="p-3 mb-2 bg-dark text-white">Faculty Details</h1>
+        <table border="2" class="table table-striped">
+            <tbody class="align-middle">
+                <tr>
+                    <th>First Name</th>
+                    <th>{{faculty.first_name}}</th>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <th>{{faculty.last_name}}</th>
+                </tr>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>{{faculty.employee_id}}</th>
+                </tr>
+                <tr>
+                    <th>Date Of Birth</th>
+                    <th>{{faculty.dob}}</th>
+                </tr>
+                <tr>
+                    <th>Email ID</th>
+                    <th>{{faculty.email}}</th>
+                </tr>
+                <tr>
+                    <th>Mobile Number</th>
+                    <th>{{faculty.mobile_no}}</th>
+                </tr>
+                <tr>
+                    <th>Created On</th>
+                    <th>{{faculty.createdon | date:'medium'}}</th>
+                </tr>
+                <tr>
+                    <th>Modified On</th>
+                    <th>{{faculty.modifiedon | date:'medium'}}</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

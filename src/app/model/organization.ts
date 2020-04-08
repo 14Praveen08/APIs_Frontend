@@ -8,5 +8,4 @@ export class organization{
    createdon:any;
    modifiedon:any;
   isActive:Boolean;
- logo:File;
 }

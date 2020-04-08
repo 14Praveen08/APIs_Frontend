@@ -1,25 +1,35 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RolesComponent } from './roles.component';
+import { Roles } from 'src/app/model/Roles';
+import {from } from 'rxjs';
+import { RoleService } from 'src/app/Services/role.service';
 
 describe('RolesComponent', () => {
   let component: RolesComponent;
-  let fixture: ComponentFixture<RolesComponent>;
+  let service: RoleService;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ RolesComponent ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(()=>{
+    service = new RoleService(null);
+    component = new RolesComponent(service);
+  })
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(RolesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('Display List of Roles', ()=>{
+    const roles: Roles[] = [
+      {
+        id:1,
+        name:"HOD"
+      }
+    ];
+
+    spyOn(service, 'getRoles').and.callFake(()=>{
+      return from([roles] )
+    });
+
+    component.ngOnInit();
+    
+    expect(component.role).toEqual(roles); 
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('Insert Roles', () => {
+    
+  })
 });

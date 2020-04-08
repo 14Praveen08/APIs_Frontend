@@ -15,7 +15,7 @@ export class RoleService {
   roles: Roles[];
 
   header = new HttpHeaders({ 'Content-Type': 'application/text; charset=utf-8' });
-  getRoles(): Observable<Roles> {
+  getRoles(): Observable<Roles[]> {
     return this._httpClient.get<Roles[]>(`${this.base_url}/role`).pipe(map((res: any) => this.roles = res.data));
 
   }

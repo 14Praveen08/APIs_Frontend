@@ -45,6 +45,7 @@ import {MessageModule} from 'primeng/message';
 import {DropdownModule} from 'primeng/dropdown';
 import {CalendarModule} from 'primeng/calendar';
 import { LogoutComponent } from './Layout/logout/logout.component';
+import { FacdetailsComponent } from './Layout/faculty/facdetails/facdetails.component';
 
 
 @NgModule({
@@ -58,7 +59,7 @@ import { LogoutComponent } from './Layout/logout/logout.component';
     StatusPipe,      
     FacultyComponent,   
     AllFacultyComponent,   
-    AddFacultyComponent, RolesComponent, EditfacultyComponent, AllStudentsComponent, OrgStudentsComponent, AddStudentsComponent, EditStudentsComponent, HeaderComponent, LogoutComponent, RolesComponent,  
+    AddFacultyComponent, RolesComponent, EditfacultyComponent, AllStudentsComponent, OrgStudentsComponent, AddStudentsComponent, EditStudentsComponent, HeaderComponent, LogoutComponent, RolesComponent, FacdetailsComponent,  
   ],
   imports: [
     BrowserModule,
