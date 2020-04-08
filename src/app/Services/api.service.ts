@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import{HttpClient } from '@angular/common/http';
+import{HttpClient, HttpErrorResponse } from '@angular/common/http';
 import{organization} from 'src/app/model/organization';
-import {Observable} from 'rxjs';
-import{map} from 'rxjs/operators'
+import {Observable, throwError} from 'rxjs';
+import{map, catchError} from 'rxjs/operators'
 @Injectable({
   providedIn: 'root'
 })
@@ -32,9 +32,8 @@ export class ApiService {
     //api call to get organization by id, input : Integer id,return type:org object
 
     getOrg(id:Number):Observable<organization>{
-     this._org=this._httpClient.get<organization>(`${this.org_url}/${id}`).pipe(map((res:any)=>res.data));
-      return this._org;
-          }
+     return this._org=this._httpClient.get<organization>(`${this.org_url}/${id}`);
+    }
 
 
     // api call to add organization, Input: org Object
@@ -57,7 +56,7 @@ export class ApiService {
    //api call to delete organization ,Input :org Id
 
    deleteOrg(id:Number):Observable<any>{
-    return this._httpClient.delete(`${this.org_url}/${id}`,{responseType:"text"});
+    return this._httpClient.delete(`${this.org_url}/${id}`,{responseType:"text"}).pipe(catchError(this.deleteError));
    }
 
  //api call to change status,Input :Organization Id
@@ -65,6 +64,20 @@ export class ApiService {
    statusOrg(id:Number){
      return this._httpClient.put(`${this.org_url}/status/${id}`,{responseType:"text"});
    }
+
+   private deleteError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      alert("Could Not Delete Organization because Students or Faculties are present!!!");
+      console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError("No Value");
+  };
 
    }
 

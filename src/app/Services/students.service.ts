@@ -33,10 +33,10 @@ export class StudentsService {
   }
   addStudent(obj:Student):Observable<Student> {
     console.log(obj);
-    return this._httpClient.post<Student>(`${this.base_url}/insert`,obj);
+    return this._httpClient.post<Student>(`${this.base_url}/insert`,obj).pipe(catchError(this.insertError));
   }
   updateStudent(obj:Student):Observable<Student> {
-    return  this._httpClient.put<Student>(`${this.base_url}/update`,obj);
+    return  this._httpClient.put<Student>(`${this.base_url}/update`,obj).pipe(catchError(this.editError));
   }
   deleteStudent(id: number) {
     return this._httpClient.delete(`${this.base_url}/delete/${id}`);
@@ -49,7 +49,35 @@ export class StudentsService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-      alert("No Values Present in your particular Selection");
+      alert("No Students Present!!");
+      console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError("No Value");
+  };
+
+  private insertError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      alert("Enter Valid Data and Proceed adding Students!!");
+      console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError("No Value");
+  };
+
+  private editError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      alert("Enter Valid Data and Proceed editing Students!!");
       console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
     }
     // return an observable with a user-facing error message

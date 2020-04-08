@@ -39,8 +39,9 @@
 
                 <td>
                     <i [routerLink]="['/edit',org.id]" class="pi pi-pencil" style="font-size: 2em;"></i>
-                    &nbsp;<i (click)="delete(org.id)" class="pi pi-minus-circle" style="font-size: 2em"></i>&nbsp;
-
+                    &nbsp;
+                    <i (click)="delete(org.id)" class="pi pi-trash" style="font-size: 2em"></i>&nbsp;
+                </td>
 
                 <td>
                     <i [routerLink]="['/faculty',org.id,org.name]" class="pi pi-eye" style="font-size: 2em "> </i>

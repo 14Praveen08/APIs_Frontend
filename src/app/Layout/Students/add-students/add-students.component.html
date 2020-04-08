@@ -14,12 +14,12 @@
     
     <p-tabPanel header="Personal Details">
         <form [formGroup]="studentForm" (ngSubmit)="save()">
-            <label>FirstName</label>&nbsp;<input type="text" formControlName="fname"> <br><br>
-            <label>LastName</label>&nbsp;<input type="text" formControlName="lname"> <br><br>
-            <label>DateOfBirth</label>&nbsp;<input type="date" formControlName="dob"> <br><br>
-            <label>RegisterNumber</label>&nbsp;<input type="text" formControlName="redgno"> <br><br>
-            <label>Email</label>&nbsp;<input type="email" formControlName="email"> <br><br>
-            <label>MobileNo</label>&nbsp;<input type="tel" formControlName="mobileno"> <br><br>
+            <label>FirstName</label>&nbsp;<input type="text" formControlName="fname" required> <br><br>
+            <label>LastName</label>&nbsp;<input type="text" formControlName="lname" required> <br><br>
+            <label>DateOfBirth</label>&nbsp;<input type="date" formControlName="dob" required> <br><br>
+            <label>RegisterNumber</label>&nbsp;<input type="text" formControlName="redgno" required> <br><br>
+            <label>Email</label>&nbsp;<input type="email" formControlName="email" required> <br><br>
+            <label>MobileNo</label>&nbsp;<input type="tel" formControlName="mobileno" required> <br><br>
             <label>Year</label>&nbsp;
             <div>
                 <select (change)="years_($event.target.value)"class="btn btn-dark dropdown-toggle border border-dark text-white">
