@@ -28,7 +28,7 @@
                 <td>{{student.mobileno}}</td>
                 <td><i [routerLink]="['/editStudent',student.id,student.org.id]" class="pi pi-user-edit"
                     title="Edit {{student.fname}} Details" style="font-size: 2em"></i>
-                    &nbsp;&nbsp;<i (click)="delete(student.id)" class="pi pi-trash" title="Delete {{student.fname}}" style="font-size: 2em"></i></td>
+                    &nbsp;&nbsp;<i (click)="delete(student.id)" class="pi pi-trash" title="Delete {{student.fname}}" style="font-size: 2em;color: red"></i></td>
 
             </tr>
         </tbody>

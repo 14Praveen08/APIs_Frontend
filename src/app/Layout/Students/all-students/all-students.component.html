@@ -41,7 +41,7 @@
                     <td>{{i.mobileno}}</td>
                     <td><i [routerLink]="['/editStudent',i.id,i.org.id]" class="pi pi-user-edit"
                         title="Edit {{i.fname}} Details" style="font-size: 2em"></i>
-                        &nbsp;&nbsp;<i (click)="delete(i.id)" class="pi pi-trash" title="Delete {{i.fname}}" style="font-size: 2em"></i></td>
+                        &nbsp;&nbsp;<i (click)="delete(i.id)" class="pi pi-trash" title="Delete {{i.fname}}" style="font-size: 2em;color: red"></i></td>
                 </tr>
             </tbody>
         </table>
