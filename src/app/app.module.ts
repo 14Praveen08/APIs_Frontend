@@ -46,6 +46,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {CalendarModule} from 'primeng/calendar';
 import { LogoutComponent } from './Layout/logout/logout.component';
 import { FacdetailsComponent } from './Layout/faculty/facdetails/facdetails.component';
+import { StuddetailsComponent } from './Layout/Students/studdetails/studdetails.component';
 
 
 @NgModule({
@@ -59,7 +60,7 @@ import { FacdetailsComponent } from './Layout/faculty/facdetails/facdetails.comp
     StatusPipe,      
     FacultyComponent,   
     AllFacultyComponent,   
-    AddFacultyComponent, RolesComponent, EditfacultyComponent, AllStudentsComponent, OrgStudentsComponent, AddStudentsComponent, EditStudentsComponent, HeaderComponent, LogoutComponent, RolesComponent, FacdetailsComponent,  
+    AddFacultyComponent, RolesComponent, EditfacultyComponent, AllStudentsComponent, OrgStudentsComponent, AddStudentsComponent, EditStudentsComponent, HeaderComponent, LogoutComponent, RolesComponent, FacdetailsComponent, StuddetailsComponent,  
   ],
   imports: [
     BrowserModule,

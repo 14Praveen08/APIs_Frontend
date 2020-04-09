@@ -24,14 +24,14 @@
          <tbody *ngIf=flag class="align-middle" border="2">
             <tr *ngFor="let i of this.faculty ;let j=index;">
                <th>{{j+1}}</th>
-               <td><a [routerLink]="['/facdetails',i.id]">{{i.first_name}}</a></td>
+               <td><a title="{{i.first_name}} Details" [routerLink]="['/facdetails',i.id]">{{i.first_name}}</a></td>
                <td>{{i.roles.name}}</td>
                <td>{{i.dob}}</td>
                <td>{{i.email}}</td>
                <td>{{i.mobile_no}}</td>
                <td><i [routerLink]="['/editfaculty',i.id,this.id,this.name]" class="pi pi-user-edit"
-                     style="font-size: 2em"></i>
-                  &nbsp;&nbsp;<i (click)="delete(i.id)" class="pi pi-trash" style="font-size: 2em"></i></td>
+                  title="Edit {{i.first_name}} Details" style="font-size: 2em"></i>
+                  &nbsp;&nbsp;<i (click)="delete(i.id)" class="pi pi-trash" title="Delete {{i.first_name}}" style="font-size: 2em"></i></td>
             </tr>
          </tbody>
       </table>

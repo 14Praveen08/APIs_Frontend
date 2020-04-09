@@ -20,15 +20,12 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>FirstName</th>
-                    <th>LastName</th>
+                    <th>Name</th>
                     <th>Organization</th>
                     <th>Year</th>
                     <th>DateOfBirth</th>
                     <th>Email</th>
                     <th>Mobile</th>
-                    <th>CreatedOn</th>
-                    <th>ModifiedOn</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -36,19 +33,17 @@
             <tbody *ngIf=flag class="align-middle" border="2">
                 <tr *ngFor="let i of this.students; let j=index;">
                     <th>{{j+1}}</th>
-                    <td>{{i.fname}}</td>
-                    <td>{{i.lname}}</td>
+                    <td><a title="{{i.fname}} Details" [routerLink]="['/studdetails',i.id]">{{i.fname}}</a></td>
                     <td>{{i.org.name}}</td>
                     <td>{{i.year}}</td>
                     <td>{{i.dob}}</td>
                     <td>{{i.email}}</td>
                     <td>{{i.mobileno}}</td>
-                    <td>{{i.createdon | date:'medium'}}</td>
-                    <td>{{i.modifiedon | date:'medium'}}</td>
-                    <td><i [routerLink]="['/editStudent',i.id,i.org.id]" class="pi pi-pencil"
-                            style="font-size: 2em"></i>
-                        &nbsp;&nbsp;<i (click)="delete(i.id)" class="pi pi-trash" style="font-size: 2em"></i></td>
+                    <td><i [routerLink]="['/editStudent',i.id,i.org.id]" class="pi pi-user-edit"
+                        title="Edit {{i.fname}} Details" style="font-size: 2em"></i>
+                        &nbsp;&nbsp;<i (click)="delete(i.id)" class="pi pi-trash" title="Delete {{i.fname}}" style="font-size: 2em"></i></td>
                 </tr>
             </tbody>
         </table>
     </div>
+</div>

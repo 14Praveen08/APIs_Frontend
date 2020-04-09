@@ -2,10 +2,6 @@
 <div class="main">
     <h1 class="p-3 mb-2 bg-dark text-white"> {{inst_name}} Students </h1>
     <div>
-        <!-- <label>Show by Year </label>&nbsp;&nbsp;<select (change)="year($event.target.value)"
-    class="btn btn-dark dropdown-toggle border border-dark text-white" >
-    <option *ngFor="let y of years;" [value]="y.value">{{this.y.label}}</option>
- </select> -->
         <button [routerLink]="['/addStudent',inst_id,inst_name]" class="p-2 mb-2 btn-dark btn-btn-lg"
             style="float: right;">Add Students</button><br>
     </div>
@@ -13,15 +9,11 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Registration No</th>
-                <th>FirstName</th>
-                <th>LastName</th>
+                <th>Name</th>
                 <th>Year</th>
                 <th>DateOfBirth</th>
                 <th>Email</th>
                 <th>Mobile</th>
-                <th>CreatedOn</th>
-                <th>ModifiedOn</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -29,18 +21,14 @@
         <tbody *ngIf=flag class="align-middle" border="2">
             <tr *ngFor="let student of students;let i=index">
                 <td>{{i+1}}</td>
-                <td>{{student.redgno}}</td>
-                <td>{{student.fname}}</td>
-                <td>{{student.lname}}</td>
+                <td><a title="{{student.fname}} Details" [routerLink]="['/studdetails',student.id]">{{student.fname}}</a></td>
                 <td>{{student.year}}</td>
                 <td>{{student.dob}}</td>
                 <td>{{student.email}}</td>
                 <td>{{student.mobileno}}</td>
-                <td>{{student.createdon |date:'medium'}}</td>
-                <td>{{student.modifiedon |date:'medium'}}</td>
                 <td><i [routerLink]="['/editStudent',student.id,student.org.id]" class="pi pi-user-edit"
-                        style="font-size: 2em"></i>
-                    &nbsp;&nbsp;<i (click)="delete(student.id)" class="pi pi-trash" style="font-size: 2em"></i></td>
+                    title="Edit {{student.fname}} Details" style="font-size: 2em"></i>
+                    &nbsp;&nbsp;<i (click)="delete(student.id)" class="pi pi-trash" title="Delete {{student.fname}}" style="font-size: 2em"></i></td>
 
             </tr>
         </tbody>

@@ -1,0 +1,48 @@
+<app-header></app-header>
+<div class="main">
+    <h1 class="p-3 mb-2 bg-dark text-white">Additional Details of {{student.fname}}</h1>
+    <table border="2" class="table table-striped">
+        <tbody class="align-middile">
+            <tr>
+                <th>First Name</th>
+                <th>{{student.fname}}</th>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <th>{{student.lname}}</th>
+            </tr>
+            <tr>
+                <th>Organization</th>
+                <th>{{student.org.name}}</th>
+            </tr>
+            <tr>
+                <th>Registration Number</th>
+                <th>{{student.redgno}}</th>
+            </tr>
+            <tr>
+                <th>Date Of Birth</th>
+                <th>{{student.dob}}</th>
+            </tr>
+            <tr>
+                <th>Email ID</th>
+                <th>{{student.email}}</th>
+            </tr>
+            <tr>
+                <th>Mobile Number</th>
+                <th>{{student.mobileno}}</th>
+            </tr>
+            <tr>
+                <th>Year</th>
+                <th>{{student.year}}</th>
+            </tr>
+            <tr>
+                <th>Created On</th>
+                <th>{{student.createdon | date:'medium'}}</th>
+            </tr>
+            <tr>
+                <th>Modified On</th>
+                <th>{{student.modifiedon | date:'medium'}}</th>
+            </tr>
+        </tbody>
+    </table>
+</div>

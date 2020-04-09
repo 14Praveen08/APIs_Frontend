@@ -21,6 +21,7 @@ import { AddStudentsComponent } from './Layout/Students/add-students/add-student
 import { AuthGuard } from './Authentication/auth.guard';
 import { LogoutComponent } from './Layout/logout/logout.component';
 import { FacdetailsComponent } from './Layout/faculty/facdetails/facdetails.component';
+import { StuddetailsComponent } from './Layout/Students/studdetails/studdetails.component';
 
 
 const routes: Routes = [
@@ -58,6 +59,11 @@ const routes: Routes = [
   {
     path: "facdetails/:id",
     component: FacdetailsComponent,
+    canActivate:[AuthGuard]
+  },
+  {
+    path: "studdetails/:id",
+    component: StuddetailsComponent,
     canActivate:[AuthGuard]
   },
   {

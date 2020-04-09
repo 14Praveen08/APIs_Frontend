@@ -31,7 +31,6 @@ export class RolesComponent implements OnInit {
   });
   add() {
     this.role1 = this.addrole.value;
-    console.log(this.role1);
     this.roleService.addRole(this.role1).subscribe((data: any) => { this.load() });
   }
 }

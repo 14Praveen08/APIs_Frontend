@@ -10,4 +10,6 @@ export class StudentObj{
     email: String
     mobileno: Number
     year: Number
+    createdon: any
+    modifiedon: any
 }
