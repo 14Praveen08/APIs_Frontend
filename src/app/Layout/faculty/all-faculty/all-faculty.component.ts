@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FacultyObj } from 'src/app/model/FacultyObj';
 import { ApiService } from 'src/app/Services/api.service';
 import * as _ from 'lodash';
-
+import { DialogService } from 'src/app/Services/dialog.service';
 
 @Component({
   selector: 'app-all-faculty',
@@ -19,7 +19,7 @@ export class AllFacultyComponent implements OnInit {
   orgObj: organization[];
   ask;
   selectedInst;
-  constructor(private orgService: ApiService, private _facultyService: FacultyService) {
+  constructor(private dialog: DialogService,private orgService: ApiService, private _facultyService: FacultyService) {
     this.orgService.getAllOrg().subscribe((data: any) => { this.orgObj = data });
 
   }
@@ -33,12 +33,22 @@ export class AllFacultyComponent implements OnInit {
   reload() {
     this._facultyService.getFacultyByInstitution(this.selectedInst).subscribe(data => { this.faculty = data, _.isEmpty(this.faculty) ? this.flag = false : this.flag = true });
   }
-  delete(id: Number) {
-    this.ask = confirm("Press OK to Delete");
-    if (this.ask) {
-      this._facultyService.deleteFaculty(id).subscribe(data => this.load());
+  // delete(id: Number) {
+  //   this.ask = confirm("Press OK to Delete");
+  //   if (this.ask) {
+  //     this._facultyService.deleteFaculty(id).subscribe(data => this.load());
 
-    }
+  //   }
+  // }
+
+  delete(id:number){
+    this.dialog.openConfirmDialog("Do you want to continue?").afterClosed().subscribe(
+      data => {
+        if(data){
+          this._facultyService.deleteFaculty(id).subscribe(data=>this.load());
+        }
+      }
+    )
   }
   organization(id: number) {
     this.selectedInst = id;

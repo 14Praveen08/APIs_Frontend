@@ -3,6 +3,8 @@ import { ApiService } from '../../Services/api.service';
 import { organization } from 'src/app/model/organization';
 import { Router } from '@angular/router'
 import * as _ from 'lodash';
+import { DialogService } from 'src/app/Services/dialog.service';
+
 
 
 @Component({
@@ -15,7 +17,7 @@ export class OrganizationComponent implements OnInit {
   flag = false;
   org: organization[];
 
-  constructor(private _apiService: ApiService, private router: Router) {
+  constructor(private dialog: DialogService,private _apiService: ApiService, private router: Router) {
     this.reload();
 
   }
@@ -32,13 +34,21 @@ export class OrganizationComponent implements OnInit {
 
 
 
-  delete(id: Number) {
-    this._apiService.deleteOrg(id).subscribe(
-      data => {
-        console.log(data);
-        this.reload();
-      });
+  // delete(id: Number) {
+  //   this._apiService.deleteOrg(id).subscribe(
+  //     data => {
+  //       console.log(data);
+  //       this.reload();
+  //     });
 
+  delete(id:number){
+    this.dialog.openConfirmDialog("Do you want to continue?").afterClosed().subscribe(
+      data => {
+        if(data){
+          this._apiService.deleteOrg(id).subscribe(data=>this.reload());
+        }
+      }
+    );
   }
 
 

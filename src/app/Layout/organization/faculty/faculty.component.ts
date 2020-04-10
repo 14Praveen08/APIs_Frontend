@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FacultyService } from '../../../Services/faculty.service';
 import { ActivatedRoute } from '@angular/router';
 import { Roles } from 'src/app/model/Roles';
-import { TableModule } from 'primeng/table';
 import * as _ from 'lodash';
 import { RoleService } from 'src/app/Services/role.service';
+import { DialogService } from 'src/app/Services/dialog.service';
+
 @Component({
   selector: 'app-faculty',
   templateUrl: './faculty.component.html',
@@ -19,7 +20,7 @@ export class FacultyComponent implements OnInit {
   name: string;
   role: Roles;
   ask;
-  constructor(private roleservice: RoleService, private fac: FacultyService, private _activatedroute: ActivatedRoute) {
+  constructor(private dialog: DialogService,private roleservice: RoleService, private fac: FacultyService, private _activatedroute: ActivatedRoute) {
 
   }
 
@@ -39,12 +40,13 @@ export class FacultyComponent implements OnInit {
 
   }
 
-  delete(id: Number) {
-    this.ask = confirm("Press OK to Delete ");
-    if (this.ask) {
-      this.fac.deleteFaculty(id).subscribe(data => { this.getbyInst() });
-    }
-
-
+  delete(id:number){
+    this.dialog.openConfirmDialog("Do you want to continue?").afterClosed().subscribe(
+      data => {
+        if(data){
+          this.fac.deleteFaculty(id).subscribe(data=>this.getbyInst());
+        }
+      }
+    )
   }
 }

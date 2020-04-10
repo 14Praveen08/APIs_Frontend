@@ -3,11 +3,9 @@
    <h1 class="p-3 mb-2 bg-dark text-white"> {{name}} Employees </h1>
    <button [routerLink]="['/addFaculties',this.id,this.name]" class="p-2 mb-2 btn-dark btn-btn-lg"
       style="float: right;">Add Faculty</button>
-   <div *ngIf="flag">
+   <div>
 
       <table class="table table-striped" border="2">
-
-
          <thead>
             <tr>
                <th>No</th>
@@ -29,9 +27,9 @@
                <td>{{i.dob}}</td>
                <td>{{i.email}}</td>
                <td>{{i.mobile_no}}</td>
-               <td><i [routerLink]="['/editfaculty',i.id,this.id,this.name]" class="pi pi-user-edit"
+               <td><i id="edit-icon" [routerLink]="['/editfaculty',i.id,this.id,this.name]" class="pi pi-user-edit"
                   title="Edit {{i.first_name}} Details" style="font-size: 2em"></i>
-                  &nbsp;&nbsp;<i (click)="delete(i.id)" class="pi pi-trash" title="Delete {{i.first_name}}" style="font-size: 2em;color: red"></i></td>
+                  &nbsp;&nbsp;<i id="delete-icon" (click)="delete(i.id)" class="pi pi-trash" title="Delete {{i.first_name}}" style="font-size: 2em;color: red"></i></td>
             </tr>
          </tbody>
       </table>

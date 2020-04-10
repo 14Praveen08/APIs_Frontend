@@ -47,6 +47,8 @@ import {CalendarModule} from 'primeng/calendar';
 import { LogoutComponent } from './Layout/logout/logout.component';
 import { FacdetailsComponent } from './Layout/faculty/facdetails/facdetails.component';
 import { StuddetailsComponent } from './Layout/Students/studdetails/studdetails.component';
+import { DeleteconfirmComponent } from './Layout/deleteconfirm/deleteconfirm.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -60,7 +62,7 @@ import { StuddetailsComponent } from './Layout/Students/studdetails/studdetails.
     StatusPipe,      
     FacultyComponent,   
     AllFacultyComponent,   
-    AddFacultyComponent, RolesComponent, EditfacultyComponent, AllStudentsComponent, OrgStudentsComponent, AddStudentsComponent, EditStudentsComponent, HeaderComponent, LogoutComponent, RolesComponent, FacdetailsComponent, StuddetailsComponent,  
+    AddFacultyComponent, RolesComponent, EditfacultyComponent, AllStudentsComponent, OrgStudentsComponent, AddStudentsComponent, EditStudentsComponent, HeaderComponent, LogoutComponent, RolesComponent, FacdetailsComponent, StuddetailsComponent, DeleteconfirmComponent,  
   ],
   imports: [
     BrowserModule,
@@ -78,6 +80,7 @@ import { StuddetailsComponent } from './Layout/Students/studdetails/studdetails.
     SidebarModule,
     ButtonModule,
     TableModule,
+    MatDialogModule,
     ToastModule,PanelModule,MessagesModule,MessageModule,DropdownModule,CalendarModule,
     
     RouterModule.forRoot([])

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { StudentObj } from 'src/app/model/StudentObj';
 import { SelectItem } from 'primeng/api/selectitem';
 import * as _ from 'lodash';
+import { DialogService } from 'src/app/Services/dialog.service';
 
 @Component({
   selector: 'app-org-students',
@@ -19,7 +20,7 @@ export class OrgStudentsComponent implements OnInit {
   ask;
   years: SelectItem[];
   selectedyear;
-  constructor(private _studentsService: StudentsService, private _activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private dialog: DialogService,private _studentsService: StudentsService, private _activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.inst_id = this._activatedRoute.snapshot.paramMap.get('id');
@@ -38,13 +39,14 @@ export class OrgStudentsComponent implements OnInit {
   reload() {
     this._studentsService.getStudentByYear(this.selectedyear).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = true : this.flag = true });
   }
-  delete(id: number) {
-    this.ask = confirm("Are You Sure?");
-    if (this.ask) {
-      this._studentsService.deleteStudent(id).subscribe(data => { this.load(), console.log(data) });
-
-    }
-
+  delete(id:number){
+    this.dialog.openConfirmDialog("Do you want to continue?").afterClosed().subscribe(
+      data => {
+        if(data){
+          this._studentsService.deleteStudent(id).subscribe(data=>this.load());
+        }
+      }
+    )
   }
   year(id: number) {
     this.selectedyear = id;

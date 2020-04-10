@@ -1,11 +1,11 @@
-
-
-
- /* 
-h1{
-  color: #3F51B5;
-} */
-
 th,td{
   text-align: center;
+}
+
+.main #edit-icon,#delete-icon,#view-fac-icon,#view-stud-icon{
+  cursor: pointer;
+}
+
+.main #shape{
+  border-radius: 50%;
 }

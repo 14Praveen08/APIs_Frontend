@@ -6,6 +6,7 @@ import { SelectItem } from 'primeng/api/selectitem';
 import { organization } from 'src/app/model/organization';
 import { ApiService } from 'src/app/Services/api.service';
 import * as _ from 'lodash';
+import { DialogService } from 'src/app/Services/dialog.service';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class AllStudentsComponent implements OnInit {
   years: SelectItem[];
   orgObj: organization[];
 
-  constructor(private orgService: ApiService, private _studentService: StudentsService, private _activatedroute: ActivatedRoute) {
+  constructor(private dialog: DialogService,private orgService: ApiService, private _studentService: StudentsService, private _activatedroute: ActivatedRoute) {
     this.orgService.getAllOrg().subscribe((data: any) => { this.orgObj = data });
 
   }
@@ -54,11 +55,14 @@ export class AllStudentsComponent implements OnInit {
     this._studentService.getStudentByInstYear(this.selectedInst, this.selectedyear).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = true : this.flag = true });
   }
 
-  delete(id: number) {
-    this.ask = confirm("Press OK to delete");
-    if (this.ask) {
-      this._studentService.deleteStudent(id).subscribe(data => this.load());
-    }
+  delete(id:number){
+    this.dialog.openConfirmDialog("Do you want to continue?").afterClosed().subscribe(
+      data => {
+        if(data){
+          this._studentService.deleteStudent(id).subscribe(data=>this.load());
+        }
+      }
+    )
   }
   organization(id: number) {
     this.selectedInst = id;

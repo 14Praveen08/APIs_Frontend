@@ -25,22 +25,22 @@
                 <td><a title="{{org.name}} Details" [routerLink]="['/details',org.id]">{{org.name}}</a> </td>
                 <td>{{org.alias}} </td>
                 <td>{{org.university}} </td>
-                <td><button type="button" title="Toggle Status" (click)=changeStatus(org.id)
-                        [ngClass]="org.isActive?'btn btn-success':'btn btn-danger'">{{org.isActive | status}}</button>
+                <td><i type="button" id="shape" class="pi pi-power-off" title="Toggle Status" (click)=changeStatus(org.id)
+                        [ngClass]="org.isActive?'btn btn-success':'btn btn-danger'"></i>
                 </td>
 
                 <td>
-                    <i [routerLink]="['/edit',org.id]" class="pi pi-user-edit" title="Edit {{org.name}} Details" style="font-size: 2em;"></i>
+                    <i id="edit-icon" [routerLink]="['/edit',org.id]" class="pi pi-user-edit" title="Edit {{org.name}} Details" style="font-size: 2em;"></i>
                     &nbsp;
-                    <i (click)="delete(org.id)" class="pi pi-trash" title="Delete {{org.name}}" style="font-size: 2em;color: red"></i>&nbsp;
+                    <i id="delete-icon" (click)="delete(org.id)"  class="pi pi-trash" title="Delete {{org.name}}" style="font-size: 2em;color: red"></i>&nbsp;
                 </td>
 
                 <td>
-                    <i [routerLink]="['/faculty',org.id,org.name]" class="pi pi-eye" title="View {{org.name}} Faculties" style="font-size: 2em "> </i>
+                    <i id="view-fac-icon" [routerLink]="['/faculty',org.id,org.name]" class="pi pi-eye" title="View {{org.name}} Faculties" style="font-size: 2em "> </i>
 
                 </td>
                 <td>
-                    <i [routerLink]="['/students',org.id,org.name]" class="pi pi-users" title="View {{org.name}} Students" style="font-size: 2em "></i>
+                    <i id="view-stud-icon" [routerLink]="['/students',org.id,org.name]" class="pi pi-users" title="View {{org.name}} Students" style="font-size: 2em "></i>
                 </td>
             </tr>
         </tbody>
