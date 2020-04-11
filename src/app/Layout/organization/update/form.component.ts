@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { organization } from 'src/app/model/organization';
 import { ApiService } from '../../../Services/api.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { AlertdialogService } from 'src/app/Services/alertdialog.service';
 
 
 
@@ -18,7 +19,7 @@ export class FormComponent implements OnInit {
   editForm;
   id: Number;
 
-  constructor(private _activatedroute: ActivatedRoute,
+  constructor(private alertdialog:AlertdialogService,private _activatedroute: ActivatedRoute,
     private _router: Router,
     private _api: ApiService
   ) {
@@ -63,14 +64,16 @@ export class FormComponent implements OnInit {
     });
 
   }
-  update() {
 
+  update(){
     this.org = this.editForm.value;
     this.org.id = this.id;
-    this._api.editOrg(this.org).subscribe();
-    this._router.navigateByUrl('home');
-
-
+    this.alertdialog.openDialog("Organization Updated Successfully").afterClosed().subscribe(
+      data=>{
+        if(data){
+          this._api.editOrg(this.org).subscribe(data=>this._router.navigateByUrl('home'));
+        }
+      });
   }
 
 

@@ -9,6 +9,7 @@ import { error } from '@angular/compiler/src/util';
 import { organization } from 'src/app/model/organization';
 import { ApiService } from 'src/app/Services/api.service';
 import { RoleService } from 'src/app/Services/role.service';
+import { AlertdialogService } from 'src/app/Services/alertdialog.service';
 
 @Component({
   selector: 'app-editfaculty',
@@ -26,7 +27,7 @@ export class EditfacultyComponent implements OnInit {
   roles: Roles[];
   orgObj: organization[];
   error;
-  constructor(private activatedRoute: ActivatedRoute, private roleService: RoleService, private facultyService: FacultyService, private orgService: ApiService, private router: Router) { }
+  constructor(private alertdialog:AlertdialogService,private activatedRoute: ActivatedRoute, private roleService: RoleService, private facultyService: FacultyService, private orgService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
@@ -54,11 +55,15 @@ export class EditfacultyComponent implements OnInit {
 
 
   update() {
-    // console.log(this.editform.value);
     this.faculty = this.editform.value;
-    this.facultyService.editFaculty(this.faculty).subscribe(data => this.router.navigate(['/faculty']), error => this.error = error);
-
-  }
+    this.alertdialog.openDialog("Faculty Updated Successfully").afterClosed().subscribe(
+      data=>{
+        if(data){
+          this.facultyService.editFaculty(this.faculty).subscribe(data => this.router.navigate(['/faculty']), error => this.error = error);
+        }
+      }
+      );
+    }
   role(id: number) {
     this.editform.patchValue({ role_id: id })
   }

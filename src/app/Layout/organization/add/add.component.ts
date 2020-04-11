@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { organization } from 'src/app/model/organization';
 
 import { FormGroup, FormControl } from '@angular/forms';
+import { AlertdialogService } from 'src/app/Services/alertdialog.service';
 
 @Component({
   selector: 'app-add',
@@ -15,7 +16,7 @@ export class AddComponent implements OnInit {
 
   org: organization = new organization();
   submitted = false;
-  constructor(private _apiService: ApiService, private _router: Router) { }
+  constructor(private alertdialog:AlertdialogService,private _apiService: ApiService, private _router: Router) { }
 
   ngOnInit(): void {
   }
@@ -28,12 +29,13 @@ export class AddComponent implements OnInit {
     university: new FormControl,
 
   });
-  save() {
-
+  save(){
     this.org = this.addForm.value;
-    console.log(this.org);
-    this._apiService.addOrg(this.org).subscribe(data => { console.log(data); });
-    this._router.navigateByUrl('home');
-
+    this.alertdialog.openDialog("Organization Created Successfully").afterClosed().subscribe(
+      data=>{
+        if(data){
+          this._apiService.addOrg(this.org).subscribe(data=>this._router.navigateByUrl('home'));
+        }
+      });
   }
 }

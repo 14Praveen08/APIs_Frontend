@@ -6,6 +6,7 @@ import { SelectItem } from 'primeng/api/selectitem';
 import { ActivatedRoute, Router } from '@angular/router'
 import { organization } from 'src/app/model/organization';
 import { ApiService } from 'src/app/Services/api.service';
+import { AlertdialogService } from 'src/app/Services/alertdialog.service';
 
 @Component({
   selector: 'app-add-students',
@@ -23,7 +24,7 @@ export class AddStudentsComponent implements OnInit {
   // submitted: boolean;
 
 
-  constructor(private _activatedRoute: ActivatedRoute, private studService: StudentsService, private router: Router, private orgService: ApiService) {
+  constructor(private alertdialog:AlertdialogService,private _activatedRoute: ActivatedRoute, private studService: StudentsService, private router: Router, private orgService: ApiService) {
     this.inst_id = parseInt(this._activatedRoute.snapshot.paramMap.get('id'));
     this.inst_name = this._activatedRoute.snapshot.paramMap.get('name');
     this.orgService.getAllOrgActive().subscribe((data: any) => { this.orgObj = data });
@@ -54,8 +55,13 @@ export class AddStudentsComponent implements OnInit {
   }
   save() {
     this.stud = this.studentForm.value;
-    this.studService.addStudent(this.stud).subscribe(data => { this.inst_id && this.inst_name != null ? this.router.navigate(['/students', this.inst_id, this.inst_name]) : this.router.navigate(['/students']) });
-  }
+    this.alertdialog.openDialog("Student Created Successfully").afterClosed().subscribe(
+      data=>{
+        if(data){
+          this.studService.addStudent(this.stud).subscribe(data => { this.inst_id && this.inst_name != null ? this.router.navigate(['/students', this.inst_id, this.inst_name]) : this.router.navigate(['/students']) });
+        }
+      });
+    }
   organization(id: number) {
     this.studentForm.patchValue({ institutionid: id });
   }

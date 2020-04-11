@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import{HttpClient, HttpErrorResponse } from '@angular/common/http';
 import{organization} from 'src/app/model/organization';
 import {Observable, throwError} from 'rxjs';
-import{map, catchError} from 'rxjs/operators'
+import{map, catchError} from 'rxjs/operators';
+import { AlertdialogService } from 'src/app/Services/alertdialog.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +15,7 @@ export class ApiService {
   private org_url="http://localhost:8080/core/organization";
 
 
-  constructor(private _httpClient: HttpClient) { }
+  constructor(private alertdialog:AlertdialogService,private _httpClient: HttpClient) { }
 
   
     //api call to list all organization ,return type :List of objects
@@ -74,7 +76,6 @@ export class ApiService {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
       alert("Could Not Delete Organization because Students or Faculties are present!!!");
-      console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
     }
     // return an observable with a user-facing error message
     return throwError("No Value");

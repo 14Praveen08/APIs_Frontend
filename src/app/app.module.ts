@@ -49,6 +49,7 @@ import { FacdetailsComponent } from './Layout/faculty/facdetails/facdetails.comp
 import { StuddetailsComponent } from './Layout/Students/studdetails/studdetails.component';
 import { DeleteconfirmComponent } from './Layout/deleteconfirm/deleteconfirm.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AlertboxComponent } from './Layout/alertbox/alertbox.component';
 
 
 @NgModule({
@@ -62,7 +63,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     StatusPipe,      
     FacultyComponent,   
     AllFacultyComponent,   
-    AddFacultyComponent, RolesComponent, EditfacultyComponent, AllStudentsComponent, OrgStudentsComponent, AddStudentsComponent, EditStudentsComponent, HeaderComponent, LogoutComponent, RolesComponent, FacdetailsComponent, StuddetailsComponent, DeleteconfirmComponent,  
+    AddFacultyComponent, RolesComponent, EditfacultyComponent, AllStudentsComponent, OrgStudentsComponent, AddStudentsComponent, EditStudentsComponent, HeaderComponent, LogoutComponent, RolesComponent, FacdetailsComponent, StuddetailsComponent, DeleteconfirmComponent, AlertboxComponent,  
   ],
   imports: [
     BrowserModule,

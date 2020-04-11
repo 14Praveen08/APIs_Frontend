@@ -8,6 +8,7 @@ import { Faculty } from 'src/app/model/Faculty';
 import { organization } from 'src/app/model/organization';
 import { ApiService } from 'src/app/Services/api.service';
 import { RoleService } from 'src/app/Services/role.service';
+import { AlertdialogService } from 'src/app/Services/alertdialog.service';
 
 
 
@@ -24,7 +25,7 @@ export class AddFacultyComponent implements OnInit {
   facultyObj: Faculty;
   orgObj: organization[];
   facultyform: FormGroup;
-  constructor(private _activatedroute: ActivatedRoute, private roleService: RoleService, private facultyService: FacultyService, private router: Router, private orgService: ApiService) {
+  constructor(private alertdialog:AlertdialogService,private _activatedroute: ActivatedRoute, private roleService: RoleService, private facultyService: FacultyService, private router: Router, private orgService: ApiService) {
 
 
     this.orgid = parseInt(this._activatedroute.snapshot.paramMap.get('id'));
@@ -60,9 +61,13 @@ export class AddFacultyComponent implements OnInit {
   save() {
 
     this.facultyObj = this.facultyform.value;
-    this.facultyService.addFaculty(this.facultyObj).subscribe(data => { this.orgid && this.orgname != null ? this.router.navigate(['/faculty', this.orgid, this.orgname]) : this.router.navigate(['/faculty']) });
-
-  }
+    this.alertdialog.openDialog("Faculty Created Successfully").afterClosed().subscribe(
+      data=>{
+        if(data){
+          this.facultyService.addFaculty(this.facultyObj).subscribe(data => { this.orgid && this.orgname != null ? this.router.navigate(['/faculty', this.orgid, this.orgname]) : this.router.navigate(['/faculty']) });
+        }
+      });
+    }
   role(id: number) {
     this.facultyform.patchValue({ role_id: id })
   }

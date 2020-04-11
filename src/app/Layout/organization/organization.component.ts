@@ -32,15 +32,6 @@ export class OrganizationComponent implements OnInit {
 
   }
 
-
-
-  // delete(id: Number) {
-  //   this._apiService.deleteOrg(id).subscribe(
-  //     data => {
-  //       console.log(data);
-  //       this.reload();
-  //     });
-
   delete(id:number){
     this.dialog.openConfirmDialog("Do you want to continue?").afterClosed().subscribe(
       data => {

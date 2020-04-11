@@ -7,6 +7,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Student } from 'src/app/model/Student';
 import { StudentObj } from 'src/app/model/StudentObj';
 import { SelectItem } from 'primeng/api/selectitem';
+import { AlertdialogService } from 'src/app/Services/alertdialog.service';
 
 @Component({
   selector: 'app-edit-students',
@@ -24,7 +25,7 @@ export class EditStudentsComponent implements OnInit {
   orgObj: organization[];
   years: SelectItem[]
   error;
-  constructor(private _studentsService: StudentsService, private _activatedRoute: ActivatedRoute, private _router: Router, private orgService: ApiService) { }
+  constructor(private alertdialog:AlertdialogService,private _studentsService: StudentsService, private _activatedRoute: ActivatedRoute, private _router: Router, private orgService: ApiService) { }
 
   ngOnInit(): void {
     this.stud_id = parseInt(this._activatedRoute.snapshot.paramMap.get('id'));
@@ -53,8 +54,13 @@ export class EditStudentsComponent implements OnInit {
 
   update() {
     this.student = this.editform.value;
-    // this._studentsService.updateStudent(this.student).subscribe(data=>{this._router.navigate(['/students',this.stud_id,this.studentObj.org.name])})
-    this._studentsService.updateStudent(this.student).subscribe(data => { this.stud_id == null ? this._router.navigate(['/students', this.inst_id, this.studentObj.org.name]) : this._router.navigate(['/allstudents']) })
+    this.alertdialog.openDialog("Student Updated Successfully").afterClosed().subscribe(
+      data => {
+        if(data){
+          this._studentsService.updateStudent(this.student).subscribe(data => { this.stud_id == null ? this._router.navigate(['/students', this.inst_id, this.studentObj.org.name]) : this._router.navigate(['/allstudents']) });
+        }
+      }
+    );
   }
 
   years_(id: number) {
