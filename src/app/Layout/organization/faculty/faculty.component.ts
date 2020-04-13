@@ -19,6 +19,7 @@ export class FacultyComponent implements OnInit {
   flag = false;
   name: string;
   role: Roles;
+  search:string;
   ask;
   constructor(private dialog: DialogService,private roleservice: RoleService, private fac: FacultyService, private _activatedroute: ActivatedRoute) {
 

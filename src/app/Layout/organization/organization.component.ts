@@ -16,6 +16,7 @@ import { DialogService } from 'src/app/Services/dialog.service';
 export class OrganizationComponent implements OnInit {
   flag = false;
   org: organization[];
+  search:string;
 
   constructor(private dialog: DialogService,private _apiService: ApiService, private router: Router) {
     this.reload();

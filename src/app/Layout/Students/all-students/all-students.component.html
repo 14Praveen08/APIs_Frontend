@@ -1,19 +1,28 @@
 <app-header></app-header>
 <div class="main">
     <h1 class="p-2 mb-2 bg-dark text-white">Students</h1>
-    <div>
-        <label>Show by Year </label>&nbsp;&nbsp;<select (change)="year($event.target.value)"
-            class="btn btn-dark dropdown-toggle border border-dark text-white">
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Search Students" [(ngModel)]="search">
+         </div>
+         <div class="col">
+            <label>Show by Year </label>
+            &nbsp;&nbsp;
+            <select (change)="year($event.target.value)" class="btn btn-dark dropdown-toggle border border-dark text-white">
             <option *ngFor="let y of years;" [value]="y.value">{{this.y.label}}</option>
-        </select>
-        <label>Show by Institution</label>&nbsp;&nbsp;<select (change)="organization($event.target.value)"
-            class="btn btn-dark dropdown-toggle border border-dark text-white">
+            </select>
+         </div>
+         <div class="col">
+            <label>Show by Institution</label>
+            &nbsp;&nbsp;
+            <select (change)="organization($event.target.value)" class="btn btn-dark dropdown-toggle border border-dark text-white">
             <option value="0">All College</option>
             <option *ngFor="let org of orgObj;" [value]="org.id">{{this.org.name}}</option>
-        </select>
-
-        <button routerLink="/addStudent" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;">Add
-            Students</button><br>
+            </select>
+         </div>
+         <div class="col">
+            <button routerLink="/addStudent" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;">Add Students</button><br>
+         </div>
     </div>
     <div>
         <table class="table table-striped" border="2">
@@ -31,7 +40,7 @@
             </thead>
             <tr *ngIf=!flag><b style="color: red;">No Students Found!!!</b></tr>
             <tbody *ngIf=flag class="align-middle" border="2">
-                <tr *ngFor="let i of this.students; let j=index;">
+                <tr *ngFor="let i of this.students | filter:search; let j=index;">
                     <th>{{j+1}}</th>
                     <td><a title="{{i.fname}} Details" [routerLink]="['/studdetails',i.id]">{{i.fname}}</a></td>
                     <td>{{i.org.name}}</td>

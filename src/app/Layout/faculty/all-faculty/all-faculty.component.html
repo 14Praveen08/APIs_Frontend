@@ -1,13 +1,20 @@
 <app-header></app-header>
 <div class="main">
    <h1 class="p-2 mb-2 bg-dark text-white">Faculties</h1>
-   <div>
-      <label>Show by Institution</label>&nbsp;&nbsp;<select (change)="organization($event.target.value)"
+   <div class="row">
+      <div class="col">
+         <input type="text" class="form-control" placeholder="Search Faculties" [(ngModel)]="search">
+      </div>
+      <div class="col">
+         <label>Show by Institution</label>&nbsp;&nbsp;<select (change)="organization($event.target.value)"
          class="btn btn-dark dropdown-toggle border border-dark text-white">
          <option value="0">All Institutions</option>
          <option *ngFor="let org of orgObj;" [value]="org.id">{{this.org.name}}</option>
-      </select>
-      <button routerLink="/addFaculties" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;">Add Faculty</button>
+         </select>
+       </div>
+      <div class="col">
+            <button routerLink="/addFaculties" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;">Add Faculty</button>
+       </div>
    </div>
    <div>
       <table class="table table-striped" border="2">
@@ -26,7 +33,7 @@
          </thead>
          <tr *ngIf=!flag><b style="color: red;">No Faculties Found!!!</b></tr>
          <tbody *ngIf=flag class="align-middle" border="2">
-            <tr *ngFor="let i of this.faculty ;let j=index;">
+            <tr *ngFor="let i of this.faculty | filter:search ;let j=index;">
                <th>{{j+1}}</th>
                <td><a title="{{i.first_name}} Details" [routerLink]="['/facdetails',i.id]">{{i.first_name}}</a></td>
                <td>{{i.org.name}}</td>

@@ -20,6 +20,7 @@ export class OrgStudentsComponent implements OnInit {
   ask;
   years: SelectItem[];
   selectedyear;
+  search:string;
   constructor(private dialog: DialogService,private _studentsService: StudentsService, private _activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {

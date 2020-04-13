@@ -17,6 +17,7 @@ export class AllFacultyComponent implements OnInit {
   faculty: FacultyObj[];
   flag = false;
   orgObj: organization[];
+  search:string;
   ask;
   selectedInst;
   constructor(private dialog: DialogService,private orgService: ApiService, private _facultyService: FacultyService) {

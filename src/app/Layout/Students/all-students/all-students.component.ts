@@ -21,6 +21,7 @@ export class AllStudentsComponent implements OnInit {
   flag = false;
   name: string[];
   ask;
+  search:string;
   selectedyear;
   selectedInst;
   years: SelectItem[];

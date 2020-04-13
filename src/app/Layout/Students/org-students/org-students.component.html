@@ -1,9 +1,14 @@
 <app-header></app-header>
 <div class="main">
     <h1 class="p-3 mb-2 bg-dark text-white"> {{inst_name}} Students </h1>
-    <div>
-        <button [routerLink]="['/addStudent',inst_id,inst_name]" class="p-2 mb-2 btn-dark btn-btn-lg"
-            style="float: right;">Add Students</button><br>
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Search Students" [(ngModel)]="search">
+        </div>
+        <div class="col">
+            <button [routerLink]="['/addStudent',inst_id,inst_name]" class="p-2 mb-2 btn-dark btn-btn-lg"
+            style="float: right;">Add Students</button>
+        </div>     
     </div>
     <table class="table table-striped" border="2">
         <thead>
@@ -19,7 +24,7 @@
         </thead>
         <tr *ngIf=!flag><b style="color: red;">No Records Found!!!</b></tr>
         <tbody *ngIf=flag class="align-middle" border="2">
-            <tr *ngFor="let student of students;let i=index">
+            <tr *ngFor="let student of students | filter:search ;let i=index">
                 <td>{{i+1}}</td>
                 <td><a title="{{student.fname}} Details" [routerLink]="['/studdetails',student.id]">{{student.fname}}</a></td>
                 <td>{{student.year}}</td>

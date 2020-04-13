@@ -51,7 +51,7 @@ import { StuddetailsComponent } from './Layout/Students/studdetails/studdetails.
 import { DeleteconfirmComponent } from './Layout/deleteconfirm/deleteconfirm.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AlertboxComponent } from './Layout/alertbox/alertbox.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -83,6 +83,7 @@ import { AlertboxComponent } from './Layout/alertbox/alertbox.component';
     ButtonModule,
     TableModule,
     MatDialogModule,
+    Ng2SearchPipeModule,
     ToastModule,PanelModule,MessagesModule,MessageModule,DropdownModule,CalendarModule,
     ToastrModule.forRoot({
       timeOut:1000,
