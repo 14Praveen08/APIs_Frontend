@@ -19,6 +19,7 @@ export class AllFacultyComponent implements OnInit {
   orgObj: organization[];
   search:string;
   ask;
+  p:number=1;
   selectedInst;
   constructor(private dialog: DialogService,private orgService: ApiService, private _facultyService: FacultyService) {
     this.orgService.getAllOrg().subscribe((data: any) => { this.orgObj = data });

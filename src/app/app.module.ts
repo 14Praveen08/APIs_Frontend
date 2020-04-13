@@ -52,7 +52,7 @@ import { DeleteconfirmComponent } from './Layout/deleteconfirm/deleteconfirm.com
 import { MatDialogModule } from '@angular/material/dialog';
 import { AlertboxComponent } from './Layout/alertbox/alertbox.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,6 +84,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     TableModule,
     MatDialogModule,
     Ng2SearchPipeModule,
+    NgxPaginationModule,
     ToastModule,PanelModule,MessagesModule,MessageModule,DropdownModule,CalendarModule,
     ToastrModule.forRoot({
       timeOut:1000,

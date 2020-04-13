@@ -20,6 +20,7 @@ export class FacultyComponent implements OnInit {
   name: string;
   role: Roles;
   search:string;
+  p:number=1;
   ask;
   constructor(private dialog: DialogService,private roleservice: RoleService, private fac: FacultyService, private _activatedroute: ActivatedRoute) {
 

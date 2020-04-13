@@ -6,6 +6,9 @@
          <input type="text" class="form-control" placeholder="Search Faculties" [(ngModel)]="search">
       </div>
       <div class="col">
+         <pagination-controls (pageChange)="p = $event"></pagination-controls>
+     </div>
+      <div class="col">
          <button [routerLink]="['/addFaculties',this.id,this.name]" class="p-2 mb-2 btn-dark btn-btn-lg"
          style="float: right;">Add Faculty</button>   
       </div>
@@ -27,7 +30,7 @@
 
          <tr *ngIf=!flag><b style="color: red;">No Records Found!!!</b></tr>
          <tbody *ngIf=flag class="align-middle" border="2">
-            <tr *ngFor="let i of this.faculty | filter:search ;let j=index;">
+            <tr *ngFor="let i of this.faculty | filter:search | paginate:{ itemsPerPage:5, currentPage: p} ;let j=index;">
                <th>{{j+1}}</th>
                <td><a title="{{i.first_name}} Details" [routerLink]="['/facdetails',i.id]">{{i.first_name}}</a></td>
                <td>{{i.roles.name}}</td>

@@ -26,7 +26,7 @@ export class AllStudentsComponent implements OnInit {
   selectedInst;
   years: SelectItem[];
   orgObj: organization[];
-
+  p:number=1;
   constructor(private dialog: DialogService,private orgService: ApiService, private _studentService: StudentsService, private _activatedroute: ActivatedRoute) {
     this.orgService.getAllOrg().subscribe((data: any) => { this.orgObj = data });
 

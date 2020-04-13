@@ -21,6 +21,7 @@ export class OrgStudentsComponent implements OnInit {
   years: SelectItem[];
   selectedyear;
   search:string;
+  p:number=1;
   constructor(private dialog: DialogService,private _studentsService: StudentsService, private _activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {

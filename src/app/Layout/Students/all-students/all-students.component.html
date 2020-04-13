@@ -6,15 +6,15 @@
             <input type="text" class="form-control" placeholder="Search Students" [(ngModel)]="search">
          </div>
          <div class="col">
-            <label>Show by Year </label>
-            &nbsp;&nbsp;
+            <label>Year Wise</label>
+            &nbsp;
             <select (change)="year($event.target.value)" class="btn btn-dark dropdown-toggle border border-dark text-white">
             <option *ngFor="let y of years;" [value]="y.value">{{this.y.label}}</option>
             </select>
          </div>
          <div class="col">
-            <label>Show by Institution</label>
-            &nbsp;&nbsp;
+            <label>Institution Wise</label>
+            &nbsp;
             <select (change)="organization($event.target.value)" class="btn btn-dark dropdown-toggle border border-dark text-white">
             <option value="0">All College</option>
             <option *ngFor="let org of orgObj;" [value]="org.id">{{this.org.name}}</option>
@@ -25,6 +25,7 @@
          </div>
     </div>
     <div>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
         <table class="table table-striped" border="2">
             <thead>
                 <tr>
@@ -40,7 +41,7 @@
             </thead>
             <tr *ngIf=!flag><b style="color: red;">No Students Found!!!</b></tr>
             <tbody *ngIf=flag class="align-middle" border="2">
-                <tr *ngFor="let i of this.students | filter:search; let j=index;">
+                <tr *ngFor="let i of this.students | filter:search | paginate:{ itemsPerPage:5, currentPage: p}; let j=index;">
                     <th>{{j+1}}</th>
                     <td><a title="{{i.fname}} Details" [routerLink]="['/studdetails',i.id]">{{i.fname}}</a></td>
                     <td>{{i.org.name}}</td>

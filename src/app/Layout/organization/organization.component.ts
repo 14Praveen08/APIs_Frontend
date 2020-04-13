@@ -17,6 +17,7 @@ export class OrganizationComponent implements OnInit {
   flag = false;
   org: organization[];
   search:string;
+  p:number=1;
 
   constructor(private dialog: DialogService,private _apiService: ApiService, private router: Router) {
     this.reload();

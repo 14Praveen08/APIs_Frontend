@@ -7,9 +7,13 @@
             <input type="text" class="form-control" placeholder="Search Organizations" [(ngModel)]="search">
         </div>
         <div class="col">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+        <div class="col">
             <button routerLink="/add" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;">
             <i class="pi pi-plus-circle" ></i>Add organization</button>
         </div>
+        
     </div>
     
     <table border="2" class="table table-striped">
@@ -27,7 +31,7 @@
         </thead>
         <tr *ngIf=!flag><b style="color: red;">No Organizations Found!!!</b></tr>
         <tbody *ngIf=flag class="align-middle">
-            <tr *ngFor="let org of this.org | filter:search ;let i=index; let isOdd=odd;let isLast=last,">
+            <tr *ngFor="let org of this.org | filter:search | paginate:{ itemsPerPage:5, currentPage: p} ;let i=index; let isOdd=odd;let isLast=last,">
 
                 <th scope="row">{{i+1}}</th>
                 <td><a title="{{org.name}} Details" [routerLink]="['/details',org.id]">{{org.name}}</a> </td>
