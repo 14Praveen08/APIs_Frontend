@@ -1,6 +1,8 @@
-div{
-    align-content:center;
+.required:after{
+  content:"*";
+  color:red;
 }
+
 input[type=text]{
     width: 100%;
     padding: 5px 20px;
@@ -10,10 +12,5 @@ input[type=text]{
     box-sizing: border-box;
   }
 
-  #form{
-    margin-left: 23%;
-    margin-top: 10px;
-    
-}
 
   

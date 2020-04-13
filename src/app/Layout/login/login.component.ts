@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 
-  username = 'admin';
+  username = '';
   password = '';
   invalidLogin = false;
   constructor(private _auth: AuthenticationService,
@@ -27,7 +27,9 @@ export class LoginComponent implements OnInit {
     }
     else {
       this.invalidLogin = true;
-      this.toaster.error('Invalid Password!!','Error');
+      this.toaster.error('Invalid UserName or Password!!','Error',{
+        progressBar:false,
+      });
 
     }
   }

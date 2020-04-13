@@ -1,14 +1,14 @@
 <app-header></app-header>
 
 <div class="main">
-   <h1 class="p-2 mb-2 bg-dark text-white">Add Faculty Details</h1>
+   <h1 class="p-2 mb-2 bg-dark text-white">Add Faculty</h1>
    <p-tabView>
       <p-tabPanel header="Organization" id="o">
          <form [formGroup]="facultyform">
-            <label>Organization </label>&nbsp;&nbsp;
+            <label class="required" for="Organization">Organization</label>&nbsp;
             <select (change)="organization($event.target.value)"
                class="btn btn-dark dropdown-toggle border border-dark text-white">
-               <option value="" disabled selected>Select</option>
+               <option value="" disabled selected>Select Your Organization</option>
                <option *ngFor="let org of orgObj;" [value]="org.id">{{this.org.name}}</option>
             </select><br><br>
          </form>
@@ -16,25 +16,53 @@
 
       <p-tabPanel header="Personal Details">
          <form [formGroup]="facultyform" (ngSubmit)="save()">
-
-            <label>FirstName</label>&nbsp;<input type="text" id="name" formControlName="first_name" required><br><br>
-            <label>LastName</label>&nbsp;<input type="text" formControlName="last_name" required /><br><br>
-            <label>DateOfBirth</label>&nbsp;<input type="date" formControlName="dob" required /><br><br>
-            <label>EmployeeId</label>&nbsp;<input type="text" formControlName="employee_id" required><br><br>
-            <label>Email</label>&nbsp;<input type="email" formControlName="email"
-               pattern="^[A-Za-z0-9._%+-]{4,15}@[A-Za-z0-9.-]{5,10}\.[a-zA-Z]{3}$" required /><br><br>
-            <label>MobileNo</label>&nbsp;<input type="tel" formControlName="mobile_no" required /><br><br>
-            <label>Role </label>&nbsp;&nbsp;
-            <select (change)="role($event.target.value)"
-               class="btn btn-dark dropdown-toggle border border-dark text-white">
-               <option value="" disabled selected>Select</option>
-               <option *ngFor="let role of roles;" [value]="role.id">{{this.role.name}}</option>
-            </select><br><br>
-            <button type="submit" class="btn btn-dark">Save</button>
+            <div class="row">
+               <div class="col">
+                  <label class="required" for="FirstName">First Name</label>
+                  <input type="text" class="form-control" formControlName="first_name" id="name" placeholder="Enter First Name" required>
+               </div>
+               <div class="col">
+                  <label class="required" for="LastName">Last Name</label>
+                  <input type="text" class="form-control" formControlName="last_name" placeholder="Enter Last Name" required>   
+               </div>
+             </div>
+             <br>
+             <div class="row">
+               <div class="col">
+                  <label class="required" for="Date Of Birth">Date Of Birth</label>
+                  <input type="date" class="form-control" formControlName="dob"  required>
+               </div>
+               <div class="col">
+                  <label class="required" for="EmployeeID">Employee ID</label>
+                  <input type="text" class="form-control" formControlName="employee_id"  placeholder="Enter Employee ID(Only Numbers)" required>
+                </div>
+             </div>
+             <br>
+            <div class="row">
+               <div class="col">
+                  <label class="required" for="Email">Email</label>
+                  <input type="email" class="form-control" formControlName="email" placeholder="Enter Email ID" required>
+               </div>
+               <div class="col">
+                  <label class="required" for="Mobile_No">Mobile No</label>
+                  <input type="tel" class="form-control" formControlName="mobile_no" placeholder="Enter Mobile Number" required>
+                </div>
+             </div>
+             <br>
+             <div class="row">
+               <div class="col">
+                  <label class="required" for="Role">Role</label>&nbsp;
+                  <select (change)="role($event.target.value)"
+                  class="btn btn-dark dropdown-toggle border border-dark text-white">
+                  <option value="" disabled selected>Select Your Role</option>
+                  <option *ngFor="let role of roles;" [value]="role.id">{{this.role.name}}</option>
+                </select>
+               </div>
+             </div>
+             <br>
+            <button type="submit" class="btn btn-dark">Save Faculty</button>
          </form>
       </p-tabPanel>
-
-
    </p-tabView>
 </div>
 <router-outlet></router-outlet>

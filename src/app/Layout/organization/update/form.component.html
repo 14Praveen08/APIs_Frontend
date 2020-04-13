@@ -1,16 +1,29 @@
 <app-header></app-header>
-<div id="form" style="padding: 3%;position:absolute;" class="border border-primary rounded">
-    <h1 class="p-2  bg-dark text-white">Edit Organization Details</h1>
-    <form [formGroup]="editForm" (ngSubmit)="update()">
-        <label>Name</label><input type="text" formControlName="name"><br>
-        <label>Alias Name</label><input type="text" formControlName="alias" /><br>
-        <label>University</label><br><br><input type="text" formControlName="university" /><br>
+<div class="main">
+    <h1 class="p-2 mb-2  bg-dark text-white">Edit Organization</h1>
+    <p-tabView>
+        <form [formGroup]="editForm" (ngSubmit)="update()">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label class="required" for="Name">Institution Name</label>
+                  <input type="text" class="form-control" formControlName="name" placeholder="Enter Institution Name" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="required" for="Alias-Name">Institution Alias Name</label>
+                  <input type="text" class="form-control" formControlName="alias" placeholder="Enter Institution Alias Name" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="required" for="Alias-Name">University Name</label>
+                  <input type="text" class="form-control" formControlName="university" placeholder="Enter University Name" required>
+                </div>
+            </div>
 
-        <button type="submit" class="btn btn-dark">Update</button>&nbsp;&nbsp;
-        <button type="button" (click)="load()" class="btn btn-dark">Reset</button>
-
-
-
-    </form>
+            <div class="row">
+                <button type="submit" class="btn btn-dark">Update</button>&nbsp;
+                <button type="button" (click)="load()" class="btn btn-dark">Reset</button>
+            </div>
+        </form>
+    </p-tabView>
+   
 </div>
 <router-outlet></router-outlet>

@@ -1,13 +1,13 @@
 <app-header></app-header>
 <div class="main">
-   <h1 class="p-2 mb-2 bg-dark text-white">Edit Student Details</h1>
+   <h1 class="p-2 mb-2 bg-dark text-white">Edit Student</h1>
    <p-tabView>
       <p-tabPanel header="Organization">
          <form [formGroup]="editform" *ngIf="flag" (ngSubmit)="update()">
-            <label>Organization </label>&nbsp;&nbsp;
+            <label class="required">Organization </label>&nbsp;&nbsp;
             <select (change)="organization($event.target.value)"
                class="btn btn-dark dropdown-toggle border border-dark text-white" formControlName="institutionid">
-               <option value="" disabled selected>Select</option>
+               <option value="" disabled selected>Select Your Organization</option>
                <option *ngFor="let org of orgObj;" [value]="org.id">{{this.org.name}}</option>
             </select><br><br>
          </form>
@@ -15,22 +15,51 @@
 
       <p-tabPanel header="Personal Details">
          <form [formGroup]="editform" *ngIf="flag" (ngSubmit)="update()">
-            <label>FirstName</label>&nbsp;<input type="text" formControlName="fname" required> <br><br>
-            <label>LastName</label>&nbsp;<input type="text" formControlName="lname" required /><br><br>
-            <label>DateOfBirth</label>&nbsp;<input type="date" formControlName="dob" required /><br><br>
-            <label>Registration Number</label>&nbsp;<input type="text" formControlName="redgno" required><br><br>
-            <label>Email</label>&nbsp;<input type="email" formControlName="email" required /><br><br>
-            <label>MobileNo</label>&nbsp;<input type="tel" formControlName="mobileno" required /><br><br>
-            <label>Year</label>&nbsp;
-            <div>
+            <div class="row">
+               <div class="col">
+                  <label class="required" for="FirstName">First Name</label>
+                  <input type="text" class="form-control" formControlName="fname" id="name" placeholder="Enter First Name" required>
+               </div>
+               <div class="col">
+                  <label class="required" for="LastName">Last Name</label>
+                  <input type="text" class="form-control" formControlName="lname" placeholder="Enter Last Name" required>   
+               </div>
+           </div>
+             <br>
+           <div class="row">
+               <div class="col">
+                  <label class="required" for="Date Of Birth">Date Of Birth</label>
+                  <input type="date" class="form-control" formControlName="dob" aria-describedby="dobHelp" required>
+               </div>
+               <div class="col">
+                  <label class="required" for="RegisterNumber">Register Number</label>
+                  <input type="text" class="form-control" formControlName="redgno" placeholder="Enter Register Number" required>
+                </div>
+           </div>
+             <br>
+           <div class="row">
+               <div class="col">
+                  <label class="required" for="Email">Email</label>
+                  <input type="email" class="form-control" formControlName="email" placeholder="Enter Email ID" required>
+               </div>
+               <div class="col">
+                  <label class="required" for="Mobile_No">Mobile No</label>
+                  <input type="tel" class="form-control" formControlName="mobileno" placeholder="Enter Mobile Number" required>
+                </div>
+           </div>
+          <br>
+          <div class="row">
+            <div class="col">
+               <label class="required">Year</label>&nbsp;
                <select (change)="years_($event.target.value)"
                   class="btn btn-dark dropdown-toggle border border-dark text-white" formControlName="year">
-                  <option value="" disabled selected>Select Year</option>
+                  <option value="" disabled selected>Select Your Year</option>
                   <option *ngFor="let year of years" [value]="year.value">{{this.year.label}}</option>
                </select>
             </div>
-            <br><br>
-            <button type="submit" class="btn btn-dark">Save</button>
+          </div>
+            <br>
+            <button type="submit" class="btn btn-dark">Update Student</button>
          </form>
       </p-tabPanel>
    </p-tabView>

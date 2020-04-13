@@ -1,8 +1,5 @@
 .main {
-
-   /* Same as the width of the sidenav   margin-top: 50px;  
-    margin-left: 30px;*/
-    font-size: 20px; /* Increased text to enable scrolling */
+    font-size: 20px; 
     padding: 0px 10px;
   }
 th{
