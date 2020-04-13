@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
 
 import { FacultyComponent } from './Layout/organization/faculty/faculty.component';
 import { FacultyService } from './Services/faculty.service';
@@ -83,7 +84,11 @@ import { AlertboxComponent } from './Layout/alertbox/alertbox.component';
     TableModule,
     MatDialogModule,
     ToastModule,PanelModule,MessagesModule,MessageModule,DropdownModule,CalendarModule,
-    
+    ToastrModule.forRoot({
+      timeOut:1000,
+      progressBar:true,
+      progressAnimation:'increasing'
+    }),
     RouterModule.forRoot([])
   ],
   providers: [ApiService,FacultyService],

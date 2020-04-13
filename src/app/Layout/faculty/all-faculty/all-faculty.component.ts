@@ -33,13 +33,6 @@ export class AllFacultyComponent implements OnInit {
   reload() {
     this._facultyService.getFacultyByInstitution(this.selectedInst).subscribe(data => { this.faculty = data, _.isEmpty(this.faculty) ? this.flag = false : this.flag = true });
   }
-  // delete(id: Number) {
-  //   this.ask = confirm("Press OK to Delete");
-  //   if (this.ask) {
-  //     this._facultyService.deleteFaculty(id).subscribe(data => this.load());
-
-  //   }
-  // }
 
   delete(id:number){
     this.dialog.openConfirmDialog("Do you want to continue?").afterClosed().subscribe(

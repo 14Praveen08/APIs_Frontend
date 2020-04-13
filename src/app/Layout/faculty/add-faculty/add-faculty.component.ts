@@ -9,6 +9,7 @@ import { organization } from 'src/app/model/organization';
 import { ApiService } from 'src/app/Services/api.service';
 import { RoleService } from 'src/app/Services/role.service';
 import { AlertdialogService } from 'src/app/Services/alertdialog.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -25,7 +26,7 @@ export class AddFacultyComponent implements OnInit {
   facultyObj: Faculty;
   orgObj: organization[];
   facultyform: FormGroup;
-  constructor(private alertdialog:AlertdialogService,private _activatedroute: ActivatedRoute, private roleService: RoleService, private facultyService: FacultyService, private router: Router, private orgService: ApiService) {
+  constructor(private toaster:ToastrService, private alertdialog:AlertdialogService,private _activatedroute: ActivatedRoute, private roleService: RoleService, private facultyService: FacultyService, private router: Router, private orgService: ApiService) {
 
 
     this.orgid = parseInt(this._activatedroute.snapshot.paramMap.get('id'));
@@ -58,16 +59,24 @@ export class AddFacultyComponent implements OnInit {
 
 
   }
-  save() {
 
+  save(){
     this.facultyObj = this.facultyform.value;
-    this.alertdialog.openDialog("Faculty Created Successfully").afterClosed().subscribe(
-      data=>{
-        if(data){
-          this.facultyService.addFaculty(this.facultyObj).subscribe(data => { this.orgid && this.orgname != null ? this.router.navigate(['/faculty', this.orgid, this.orgname]) : this.router.navigate(['/faculty']) });
-        }
-      });
-    }
+    this.facultyService.addFaculty(this.facultyObj).subscribe((res:any)=>{
+      if(res.status == 201){
+        this.alertdialog.openDialog("Faculty Created Successfully").afterClosed().subscribe(
+          data=>{
+            if(data){
+              this.orgid && this.orgname != null ? this.router.navigate(['/faculty', this.orgid, this.orgname]) : this.router.navigate(['/faculty'])
+            }
+          });
+      }
+      else{
+        this.toaster.error('Enter Valid Data!!','Error');
+      }
+    });
+  }
+
   role(id: number) {
     this.facultyform.patchValue({ role_id: id })
   }
