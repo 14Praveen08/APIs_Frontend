@@ -25,10 +25,10 @@
          </div>
     </div>
     <div>
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
         <table class="table table-striped" border="2">
             <thead>
-                <tr>
+                <tr *ngIf=!flag style="text-align: center;"><b style="color: red;">No Students Present!!!</b></tr>
+                <tr *ngIf=flag>
                     <th>No</th>
                     <th>Name</th>
                     <th>Organization</th>
@@ -39,7 +39,6 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tr *ngIf=!flag><b style="color: red;">No Students Found!!!</b></tr>
             <tbody *ngIf=flag class="align-middle" border="2">
                 <tr *ngFor="let i of this.students | filter:search | paginate:{ itemsPerPage:5, currentPage: p}; let j=index;">
                     <th>{{j+1}}</th>
@@ -55,5 +54,8 @@
                 </tr>
             </tbody>
         </table>
+        <div *ngIf=flag class="row">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
     </div>
 </div>

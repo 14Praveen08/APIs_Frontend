@@ -6,9 +6,6 @@
          <input type="text" class="form-control" placeholder="Search Faculties" [(ngModel)]="search">
       </div>
       <div class="col">
-         <pagination-controls (pageChange)="p = $event"></pagination-controls>
-     </div>
-      <div class="col">
          <button [routerLink]="['/addFaculties',this.id,this.name]" class="p-2 mb-2 btn-dark btn-btn-lg"
          style="float: right;">Add Faculty</button>   
       </div>
@@ -17,7 +14,8 @@
 
       <table class="table table-striped" border="2">
          <thead>
-            <tr>
+            <tr *ngIf=!flag style="text-align: center;"><b style="color: red;">No Faculties Present!!!</b></tr>
+            <tr *ngIf=flag>
                <th>No</th>
                <th>Name</th>
                <th>Role</th>
@@ -27,8 +25,6 @@
                <th>Action</th>
             </tr>
          </thead>
-
-         <tr *ngIf=!flag><b style="color: red;">No Records Found!!!</b></tr>
          <tbody *ngIf=flag class="align-middle" border="2">
             <tr *ngFor="let i of this.faculty | filter:search | paginate:{ itemsPerPage:5, currentPage: p} ;let j=index;">
                <th>{{j+1}}</th>
@@ -43,6 +39,8 @@
             </tr>
          </tbody>
       </table>
-
+      <div *ngIf=flag class="row">
+         <pagination-controls (pageChange)="p = $event"></pagination-controls>
+     </div>
    </div>
 </div>

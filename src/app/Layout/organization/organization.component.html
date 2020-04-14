@@ -7,9 +7,6 @@
             <input type="text" class="form-control" placeholder="Search Organizations" [(ngModel)]="search">
         </div>
         <div class="col">
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-        </div>
-        <div class="col">
             <button routerLink="/add" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;">
             <i class="pi pi-plus-circle" ></i>Add organization</button>
         </div>
@@ -18,7 +15,8 @@
     
     <table border="2" class="table table-striped">
         <thead>
-            <tr>
+            <tr *ngIf=!flag style="text-align: center;"><b style="color: red;">No Organizations Found!!!</b></tr>
+            <tr *ngIf=flag>
                 <th scope="col">No </th>
                 <th scope="col">Name</th>
                 <th scope="col">Alias</th>
@@ -29,7 +27,6 @@
                 <th scope="col">Students</th>
             </tr>
         </thead>
-        <tr *ngIf=!flag><b style="color: red;">No Organizations Found!!!</b></tr>
         <tbody *ngIf=flag class="align-middle">
             <tr *ngFor="let org of this.org | filter:search | paginate:{ itemsPerPage:5, currentPage: p} ;let i=index; let isOdd=odd;let isLast=last,">
 
@@ -57,6 +54,9 @@
             </tr>
         </tbody>
     </table>
+    <div *ngIf=flag class="row">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
 </div>
 
 

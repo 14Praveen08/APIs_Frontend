@@ -2,27 +2,25 @@
 <div class="main">
    <h1 class="p-2 mb-2 bg-dark text-white">Faculties</h1>
    <div class="row">
-      <div class="col-md-3 mb-4">
+      <div class="col">
          <input type="text" class="form-control" placeholder="Search Faculties" [(ngModel)]="search">
       </div>
-      <div class="col-md-3 mb-4">
-         <pagination-controls (pageChange)="p = $event"></pagination-controls>
-     </div>
-      <div class="col-md-3 mb-4">
+      <div class="col">
          <label>Institution Wise</label> &nbsp;<select (change)="organization($event.target.value)"
          class="btn btn-dark dropdown-toggle border border-dark text-white">
          <option value="0">All Institutions</option>
          <option *ngFor="let org of orgObj;" [value]="org.id">{{this.org.name}}</option>
          </select>
        </div>
-      <div class="col-md-3 mb-4">
+      <div class="col">
             <button routerLink="/addFaculties" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;">Add Faculty</button>
        </div>
    </div>
    <div>
       <table class="table table-striped" border="2">
          <thead>
-            <tr>
+            <tr *ngIf=!flag style="text-align: center;"><b style="color: red;">No Faculties Present!!!</b></tr>
+            <tr *ngIf=flag>
                <th>No</th>
                <th>Name</th>
                <th>Organization</th>
@@ -34,8 +32,7 @@
             </tr>
 
          </thead>
-         <tr *ngIf=!flag><b style="color: red;">No Faculties Found!!!</b></tr>
-         <tbody *ngIf=flag class="align-middle" border="2">
+            <tbody *ngIf=flag class="align-middle" border="2">
             <tr *ngFor="let i of this.faculty | filter:search | paginate:{ itemsPerPage:5, currentPage: p} ;let j=index;">
                <th>{{j+1}}</th>
                <td><a title="{{i.first_name}} Details" [routerLink]="['/facdetails',i.id]">{{i.first_name}}</a></td>
@@ -50,5 +47,8 @@
             </tr>
          </tbody>
       </table>
+      <div *ngIf=flag class="row">
+         <pagination-controls (pageChange)="p = $event"></pagination-controls>
+     </div>
    </div>
 </div>
