@@ -7,6 +7,8 @@ import { organization } from 'src/app/model/organization';
 import { ApiService } from 'src/app/Services/api.service';
 import * as _ from 'lodash';
 import { DialogService } from 'src/app/Services/dialog.service';
+import { Department } from 'src/app/model/Department';
+import { DepartmentService } from 'src/app/Services/department.service';
 
 
 @Component({
@@ -24,17 +26,20 @@ export class AllStudentsComponent implements OnInit {
   search:string;
   selectedyear;
   selectedInst;
+  selectedDept;
   years: SelectItem[];
   orgObj: organization[];
+  departments:Department[];
   p:number=1;
-  constructor(private dialog: DialogService,private orgService: ApiService, private _studentService: StudentsService, private _activatedroute: ActivatedRoute) {
+  constructor(private deptService:DepartmentService,private dialog: DialogService,private orgService: ApiService, private _studentService: StudentsService, private _activatedroute: ActivatedRoute) {
     this.orgService.getAllOrg().subscribe((data: any) => { this.orgObj = data });
+    this.deptService.getDepartment().subscribe((data: any)=>{this.departments = data});
 
   }
 
   ngOnInit(): void {
     this.years = []
-    this.years.push({ label: 'All', value: '0' })
+    this.years.push({ label: 'All Year', value: '0' })
     this.years.push({ label: 'First Year', value: '1' });
     this.years.push({ label: 'Second Year', value: '2' });
     this.years.push({ label: 'Third Year', value: '3' });
@@ -50,6 +55,10 @@ export class AllStudentsComponent implements OnInit {
   }
   reloadOrg() {
     this._studentService.getStudentByInstitution(this.selectedInst).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = true : this.flag = true });
+  }
+
+  reloadDept(){
+    this._studentService.getStudentByDepartment(this.selectedDept).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = true : this.flag = true });
   }
 
   reloadOrgYear() {
@@ -87,6 +96,15 @@ export class AllStudentsComponent implements OnInit {
     }
     else {
       this.reload();
+    }
+  }
+  department(id: number) {
+    this.selectedDept = id;
+    if(this.selectedDept !=0 ){
+      this.reloadDept();
+    }
+    else{
+      this.load();
     }
   }
 }

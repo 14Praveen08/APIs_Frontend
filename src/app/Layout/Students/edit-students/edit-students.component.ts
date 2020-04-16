@@ -8,6 +8,8 @@ import { Student } from 'src/app/model/Student';
 import { StudentObj } from 'src/app/model/StudentObj';
 import { SelectItem } from 'primeng/api/selectitem';
 import { AlertdialogService } from 'src/app/Services/alertdialog.service';
+import { Department } from 'src/app/Model/Department';
+import { DepartmentService } from 'src/app/Services/department.service';
 
 @Component({
   selector: 'app-edit-students',
@@ -22,10 +24,12 @@ export class EditStudentsComponent implements OnInit {
   inst_name: String;
   studentObj: StudentObj;
   student: Student;
+  search:string;
   orgObj: organization[];
-  years: SelectItem[]
+  department: Department[];
+  years: SelectItem[];
   error;
-  constructor(private alertdialog:AlertdialogService,private _studentsService: StudentsService, private _activatedRoute: ActivatedRoute, private _router: Router, private orgService: ApiService) { }
+  constructor(private deptService:DepartmentService,private alertdialog:AlertdialogService,private _studentsService: StudentsService, private _activatedRoute: ActivatedRoute, private _router: Router, private orgService: ApiService) { }
 
   ngOnInit(): void {
     this.stud_id = parseInt(this._activatedRoute.snapshot.paramMap.get('id'));
@@ -33,6 +37,7 @@ export class EditStudentsComponent implements OnInit {
     this.inst_name = this._activatedRoute.snapshot.paramMap.get('name');
     this._studentsService.getStudent(this.stud_id).subscribe(data => { this.studentObj = data, this.loadValues(), this.flag = true });
     this.orgService.getAllOrg().subscribe((data: any) => { this.orgObj = data });
+    this.deptService.getDepartment().subscribe((data: any) => { this.department = data});
     this.years = [];
     this.years.push({ label: 'Select Year', value: '' });
     this.years.push({ label: 'First Year', value: '1' });
@@ -49,7 +54,8 @@ export class EditStudentsComponent implements OnInit {
     dob: new FormControl(),
     email: new FormControl(),
     mobileno: new FormControl(),
-    year: new FormControl()
+    year: new FormControl(),
+    department_id: new FormControl()
   });
 
   update() {
@@ -70,6 +76,10 @@ export class EditStudentsComponent implements OnInit {
   organization(id: number) {
     this.editform.patchValue({ institutionid: id });
   }
+
+  department_(id:number){
+    this.editform.patchValue({department_id:id});
+  }
   loadValues() {
     this.editform.patchValue({
       id: this.stud_id,
@@ -80,7 +90,8 @@ export class EditStudentsComponent implements OnInit {
       dob: this.studentObj.dob,
       email: this.studentObj.email,
       mobileno: this.studentObj.mobileno,
-      year: this.studentObj.year
+      year: this.studentObj.year,
+      department_id: this.studentObj.department.id,
 
     });
 

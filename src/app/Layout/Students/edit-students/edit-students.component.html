@@ -57,6 +57,18 @@
                   <option *ngFor="let year of years" [value]="year.value">{{this.year.label}}</option>
                </select>
             </div>
+            <div class="col">
+               <label class="required">Department</label>&nbsp;
+               <select (change)="department_($event.target.value)"
+               class="btn btn-dark dropdown-toggle border border-dark text-white" formControlName="department_id">
+               <div>
+                   <input type="text" class="form-control" placeholder="Search Students" [(ngModel)]="search">
+               </div>
+               <option value="" disabled selected>Select Your Year</option>
+               <option *ngFor="let dept of department | filter:search" [value]="dept.id">{{this.dept.name}}</option>
+                </select>
+       </div>
+
           </div>
             <br>
             <button type="submit" class="btn btn-dark">Update Student</button>

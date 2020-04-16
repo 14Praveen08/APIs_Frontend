@@ -1,33 +1,33 @@
 <app-header></app-header>
 <div class="main">
-      <h1 class="p-3 mb-2 bg-dark text-white">Additional Details of {{org.name}}</h1>
+      <h1 class="p-3 mb-2 bg-dark text-white">Additional Details of {{org?.name}}</h1>
       <table border="2" class="table table-striped">
 
          <tbody class="align-middle">
 
             <tr>
                <th>Name</th>
-               <td>{{org.name}}</td>
+               <td>{{org?.name}}</td>
             </tr>
             <tr>
                <th>Alias</th>
-               <td>{{org.alias}} </td>
+               <td>{{org?.alias}} </td>
             </tr>
             <tr>
                <th>Type</th>
-               <td>{{org.university}} </td>
+               <td>{{org?.university}} </td>
             </tr>
             <tr>
                <th>Createdon</th>
-               <td>{{org.createdon | date:'medium'}}</td>
+               <td>{{org?.createdon | date:'medium'}}</td>
             </tr>
             <tr>
                <th>ModifiedOn</th>
-               <td>{{org.modifiedon | date:'medium'}}</td>
+               <td>{{org?.modifiedon | date:'medium'}}</td>
             </tr>
             <tr>
                <th>Status</th>
-               <td>{{org.isActive | status}}</td>
+               <td>{{org?.isActive | status}}</td>
             </tr>
          </tbody>
 

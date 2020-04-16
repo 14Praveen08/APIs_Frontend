@@ -31,6 +31,9 @@ export class StudentsService {
   getStudentByYear(year: number):Observable<StudentObj[]>{
     return this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud/year/${year}`).pipe(map((res: any) => res.data),catchError(this.handleError));
   }
+  getStudentByDepartment(dept_id: number):Observable<StudentObj[]>{
+    return  this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud/department/${dept_id}`).pipe(map((res: any) => res.data),catchError(this.handleError));
+  }
   addStudent(obj:Student):Observable<Student> {
     console.log(obj);
     return this._httpClient.post<Student>(`${this.base_url}/insert`,obj).pipe(catchError(this.insertError));

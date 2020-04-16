@@ -1,47 +1,51 @@
 <app-header></app-header>
 <div class="main">
-    <h1 class="p-3 mb-2 bg-dark text-white">Additional Details of {{student.fname}}</h1>
+    <h1 class="p-3 mb-2 bg-dark text-white">Additional Details of {{student?.fname}}</h1>
     <table border="2" class="table table-striped">
         <tbody class="align-middile">
             <tr>
                 <th>First Name</th>
-                <td>{{student.fname}}</td>
+                <td>{{student?.fname}}</td>
             </tr>
             <tr>
                 <th>Last Name</th>
-                <td>{{student.lname}}</td>
+                <td>{{student?.lname}}</td>
             </tr>
             <tr>
                 <th>Organization</th>
-                <td>{{student.org.name}}</td>
+                <td>{{student?.org?.name}}</td>
             </tr>
             <tr>
                 <th>Registration Number</th>
-                <td>{{student.redgno}}</td>
+                <td>{{student?.redgno}}</td>
             </tr>
             <tr>
                 <th>Date Of Birth</th>
-                <td>{{student.dob}}</td>
+                <td>{{student?.dob}}</td>
             </tr>
             <tr>
                 <th>Email ID</th>
-                <td>{{student.email}}</td>
+                <td>{{student?.email}}</td>
             </tr>
             <tr>
                 <th>Mobile Number</th>
-                <td>{{student.mobileno}}</td>
+                <td>{{student?.mobileno}}</td>
+            </tr>
+             <tr>
+                <th>Department</th>
+                <td>{{student?.department?.name}}</td>
             </tr>
             <tr>
                 <th>Year</th>
-                <td>{{student.year}}</td>
+                <td>{{student?.year}}</td>
             </tr>
             <tr>
                 <th>Created On</th>
-                <td>{{student.createdon | date:'medium'}}</td>
+                <td>{{student?.createdon | date:'medium'}}</td>
             </tr>
             <tr>
                 <th>Modified On</th>
-                <td>{{student.modifiedon | date:'medium'}}</td>
+                <td>{{student?.modifiedon | date:'medium'}}</td>
             </tr>
         </tbody>
     </table>

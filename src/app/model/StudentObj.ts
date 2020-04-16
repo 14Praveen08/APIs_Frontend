@@ -1,4 +1,5 @@
 import { organization } from './organization'
+import { Department } from './Department'
 
 export class StudentObj{
     id: Number
@@ -10,6 +11,7 @@ export class StudentObj{
     email: String
     mobileno: Number
     year: Number
+    department: Department
     createdon: any
     modifiedon: any
 }

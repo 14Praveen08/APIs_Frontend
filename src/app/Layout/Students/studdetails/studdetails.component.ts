@@ -3,6 +3,7 @@ import { StudentObj } from 'src/app/model/StudentObj';
 import { organization } from 'src/app/model/organization';
 import { StudentsService } from 'src/app/Services/students.service';
 import { ActivatedRoute } from '@angular/router';
+import { Department } from 'src/app/Model/Department';
 
 @Component({
   selector: 'app-studdetails',
@@ -12,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class StuddetailsComponent implements OnInit {
   student: StudentObj;
   org:organization;
+  dept:Department
   id:number;
   constructor(private stud:StudentsService,
     private _activatedroute: ActivatedRoute) {

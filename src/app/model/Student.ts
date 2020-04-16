@@ -8,5 +8,6 @@ export class Student {
     email: String
     mobileno: Number
     year: Number
+    department_id: Number
 
 }
