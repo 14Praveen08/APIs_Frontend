@@ -28,6 +28,10 @@ export class StudentsService {
   getStudentByInstYear(inst_id: number, year: number):Observable<StudentObj[]> {
     return this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud/instyearwise/${inst_id}/${year}`).pipe(map((res: any) => res.data),catchError(this.handleError));
   }
+  getStudentByInstYearDept(inst_id: number, year: number, dept: number):Observable<StudentObj[]> {
+    // console.log(inst_id, year, dept)
+    return this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud/instyeardeptwise/${inst_id}/${year}/${dept}`).pipe(map((res: any) => res.data),catchError(this.handleError));
+  }
   getStudentByYear(year: number):Observable<StudentObj[]>{
     return this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud/year/${year}`).pipe(map((res: any) => res.data),catchError(this.handleError));
   }

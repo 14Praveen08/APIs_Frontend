@@ -23,12 +23,15 @@
         </div>
 
         <div class="col">
-            <button routerLink="/addStudent" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;">Add Students</button><br>
+            <button (click)="save()" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;">Search Students</button><br>
          </div>
     </div>
     <div class="row">
         <div class="col">
             <input type="text" class="form-control" placeholder="Search Students" [(ngModel)]="search">
+         </div>
+         <div class="col">
+            <button routerLink="/addStudent" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;">Add Students</button><br>
          </div>
     </div>
     <br>

@@ -13,7 +13,7 @@
         </p-tabPanel>
 
         <p-tabPanel header="Personal Details">
-            <form [formGroup]="studentForm" (ngSubmit)="save()">
+            <form [formGroup]="studentForm">
                 <div class="row">
                     <div class="col">
                        <label class="required" for="FirstName">First Name</label>
@@ -70,7 +70,7 @@
                     
                  </div>
                 <br>
-                <button type="submit" class="btn btn-dark">Save Student</button>
+                <button type="submit" (click)="save()"class="btn btn-dark">Save Student</button>
             </form>
         </p-tabPanel>
     </p-tabView>

@@ -47,22 +47,31 @@ export class AllStudentsComponent implements OnInit {
     this.load();
   }
   load() {
-    this._studentService.getAllStudents().subscribe((data: StudentObj[]) => { this.students = data, _.isEmpty(this.students) ? this.flag = true : this.flag = true });
+    this._studentService.getAllStudents().subscribe((data: StudentObj[]) => { this.students = data, _.isEmpty(this.students) ? this.flag = false : this.flag = true });
   }
   reload() {
-    this._studentService.getStudentByYear(this.selectedyear).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = true : this.flag = true });
+    this._studentService.getStudentByYear(this.selectedyear).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = false : this.flag = true });
 
   }
   reloadOrg() {
-    this._studentService.getStudentByInstitution(this.selectedInst).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = true : this.flag = true });
+    this._studentService.getStudentByInstitution(this.selectedInst).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = false : this.flag = true });
   }
 
   reloadDept(){
-    this._studentService.getStudentByDepartment(this.selectedDept).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = true : this.flag = true });
+    this._studentService.getStudentByDepartment(this.selectedDept).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = false : this.flag = true });
   }
 
   reloadOrgYear() {
-    this._studentService.getStudentByInstYear(this.selectedInst, this.selectedyear).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = true : this.flag = true });
+    this._studentService.getStudentByInstYear(this.selectedInst, this.selectedyear).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = false : this.flag = true });
+  }
+
+  getstudents(){
+    this._studentService.getStudentByInstYearDept(this.selectedInst,this.selectedyear, this.selectedDept).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = false : this.flag = true});
+  }
+
+  save(){
+    console.log(this.selectedInst, this.selectedyear, this.selectedDept);
+    this.getstudents();
   }
 
   delete(id:number){
@@ -76,35 +85,35 @@ export class AllStudentsComponent implements OnInit {
   }
   organization(id: number) {
     this.selectedInst = id;
-    if (this.selectedInst != 0 && this.selectedyear != 0) {
-      this.reloadOrgYear();
-    }
-    else if (this.selectedInst == 0 && this.selectedyear != 0) {
-      this.reload();
-    }
-    else if (this.selectedInst != 0 && this.selectedyear == 0) {
-      this.reloadOrg();
-    }
-    else {
-      this.load();
-    }
+    // if (this.selectedInst != 0 && this.selectedyear != 0) {
+    //   this.reloadOrgYear();
+    // }
+    // else if (this.selectedInst == 0 && this.selectedyear != 0) {
+    //   this.reload();
+    // }
+    // else if (this.selectedInst != 0 && this.selectedyear == 0) {
+    //   this.reloadOrg();
+    // }
+    // else {
+    //   this.load();
+    // }
   }
   year(id: number) {
     this.selectedyear = id;
-    if (this.selectedyear == 0 || this.selectedInst == 0) {
-      this.load();
-    }
-    else {
-      this.reload();
-    }
+    // if (this.selectedyear == 0 || this.selectedInst == 0) {
+    //   this.load();
+    // }
+    // else {
+    //   this.reload();
+    // }
   }
   department(id: number) {
     this.selectedDept = id;
-    if(this.selectedDept !=0 ){
-      this.reloadDept();
-    }
-    else{
-      this.load();
-    }
+    // if(this.selectedDept !=0 ){
+    //   this.reloadDept();
+    // }
+    // else{
+    //   this.load();
+    // }
   }
 }
