@@ -38,6 +38,24 @@ export class AddStudentsComponent implements OnInit {
     this.form();
   }
 
+  emailValidator(control) {
+    if (control.value) {
+      const matches = control.value.match(/^[A-Za-z0-9._%+-]{4,25}@[A-Za-z0-9.-]{5,10}\.[a-zA-Z]{3}$/);
+      return matches ? null : { 'invalidEmail': true };
+    } else {
+      return null;
+    }
+  }
+
+  phoneValidator(control) {
+    if (control.value) {
+      const matches = control.value.match(/^[0-9]{10}$/);
+      return matches ? null : { 'invalidPhone': true };
+    } else {
+      return null;
+    }
+  }
+
   form() {
     this.studentForm = new FormGroup({
 
@@ -46,8 +64,8 @@ export class AddStudentsComponent implements OnInit {
       'fname': new FormControl('', Validators.required),
       'lname': new FormControl('', Validators.required),
       'dob': new FormControl('', Validators.required),
-      'email': new FormControl('', Validators.required),
-      'mobileno': new FormControl('', Validators.required),
+      'email': new FormControl('',[Validators.required, this.emailValidator]),
+      'mobileno': new FormControl('',[Validators.required, this.phoneValidator]),
       'year': new FormControl('', Validators.required),
       'department_id': new FormControl('', Validators.required),
     });

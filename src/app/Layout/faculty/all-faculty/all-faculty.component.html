@@ -3,15 +3,28 @@
    <h1 class="p-2 mb-2 bg-dark text-white">Faculties</h1>
    <div class="row">
       <div class="col">
-         <input type="text" class="form-control" placeholder="Search Faculties" [(ngModel)]="search">
-      </div>
-      <div class="col">
-         <label>Institution Wise</label> &nbsp;<select (change)="organization($event.target.value)"
+         <select (change)="organization($event.target.value)"
          class="btn btn-dark dropdown-toggle border border-dark text-white">
+         <option value="" disabled selected>Select Institution</option>
          <option value="0">All Institutions</option>
          <option *ngFor="let org of orgObj;" [value]="org.id">{{this.org.name}}</option>
          </select>
        </div>
+       <div class="col">
+         <select (change)="role($event.target.value)" class="btn btn-dark dropdown-toggle border border-dark text-white">
+             <option value="" disabled selected>Select Role</option>
+             <option value="0">All Roles</option>    
+             <option *ngFor="let role of roles;" [value]="role.id">{{this.role.name}}</option>
+         </select>
+     </div>
+     <div class="col">
+      <button (click)="save()" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;">Search Faculties</button><br>
+     </div>
+   </div>
+   <div class="row">
+      <div class="col">
+         <input type="text" class="form-control" placeholder="Search Faculties" [(ngModel)]="search">
+      </div>
       <div class="col">
             <button routerLink="/addFaculties" class="p-2 mb-2 btn-dark btn-btn-lg" style="float: right;">Add Faculty</button>
        </div>

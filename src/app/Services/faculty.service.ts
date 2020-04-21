@@ -47,6 +47,14 @@ export class FacultyService {
 
     return this._httpClient.get<FacultyObj[]>(`${this.base_url}/faculty/institution/${id}`).pipe(map((res: any) => res.data),catchError(this.handleError));
   }
+  getFacultyByInstRole(inst_id:Number,role_id: Number): Observable<FacultyObj[]> {
+
+    return this._httpClient.get<FacultyObj[]>(`${this.base_url}/faculty/instrole/${inst_id}/${role_id}`).pipe(map((res: any) => res.data),catchError(this.handleError));
+  }
+  getFacultyByRole(role_id: Number): Observable<FacultyObj[]> {
+
+    return this._httpClient.get<FacultyObj[]>(`${this.base_url}/faculty/role/${role_id}`).pipe(map((res: any) => res.data),catchError(this.handleError));
+  }
   deleteFaculty(id: Number): Observable<any> {
     return this._httpClient.delete(`${this.base_url}/faculty/${id}`);
 

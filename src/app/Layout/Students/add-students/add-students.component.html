@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="col">
                        <label class="required" for="FirstName">First Name</label>
-                       <input type="text" class="form-control" formControlName="fname" id="name" placeholder="Enter First Name" required>
+                       <input type="text" class="form-control"  formControlName="fname" id="name" placeholder="Enter First Name" required >
                     </div>
                     <div class="col">
                        <label class="required" for="LastName">Last Name</label>
@@ -61,7 +61,7 @@
                             <select (change)="department_($event.target.value)"
                             class="btn btn-dark dropdown-toggle border border-dark text-white">
                             <div>
-                                <input type="text" class="form-control" placeholder="Search Students" [(ngModel)]="search">
+                                <input type="text" class="form-control">
                             </div>
                             <option value="" disabled selected>Select Your Department</option>
                             <option *ngFor="let dept of department | filter:search;" [value]="dept.id">{{this.dept.name}}</option>
@@ -70,7 +70,7 @@
                     
                  </div>
                 <br>
-                <button type="submit" (click)="save()"class="btn btn-dark">Save Student</button>
+                <button [disabled]="!studentForm.valid" type="submit" (click)="save()"class="btn btn-dark">Save Student</button>
             </form>
         </p-tabPanel>
     </p-tabView>

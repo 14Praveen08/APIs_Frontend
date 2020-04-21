@@ -28,8 +28,10 @@ export class StudentsService {
   getStudentByInstYear(inst_id: number, year: number):Observable<StudentObj[]> {
     return this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud/instyearwise/${inst_id}/${year}`).pipe(map((res: any) => res.data),catchError(this.handleError));
   }
+  getStudentByInstDept(inst_id: number, dept: number):Observable<StudentObj[]> {
+    return this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud/instdeptwise/${inst_id}/${dept}`).pipe(map((res: any) => res.data),catchError(this.handleError));
+  }
   getStudentByInstYearDept(inst_id: number, year: number, dept: number):Observable<StudentObj[]> {
-    // console.log(inst_id, year, dept)
     return this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud/instyeardeptwise/${inst_id}/${year}/${dept}`).pipe(map((res: any) => res.data),catchError(this.handleError));
   }
   getStudentByYear(year: number):Observable<StudentObj[]>{
@@ -37,6 +39,9 @@ export class StudentsService {
   }
   getStudentByDepartment(dept_id: number):Observable<StudentObj[]>{
     return  this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud/department/${dept_id}`).pipe(map((res: any) => res.data),catchError(this.handleError));
+  }
+  getStudentByDeptYear(dept_id: number, year: number):Observable<StudentObj[]> {
+    return this._httpClient.get<StudentObj[]>(`${this.base_url}/getstud/deptyearwise/${dept_id}/${year}`).pipe(map((res: any) => res.data),catchError(this.handleError));
   }
   addStudent(obj:Student):Observable<Student> {
     console.log(obj);
@@ -48,6 +53,20 @@ export class StudentsService {
   deleteStudent(id: number) {
     return this._httpClient.delete(`${this.base_url}/delete/${id}`);
   }
+
+  private getError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      alert("Select Unselected Values!!");
+      console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError("No Value");
+  };
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

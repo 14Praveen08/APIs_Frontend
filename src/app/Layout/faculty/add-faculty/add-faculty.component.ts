@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 import { FacultyService } from 'src/app/Services/faculty.service';
 import { Roles } from 'src/app/model/Roles';
@@ -41,20 +41,36 @@ export class AddFacultyComponent implements OnInit {
     this.form();
 
   }
+  emailValidator(control) {
+    if (control.value) {
+      const matches = control.value.match(/^[A-Za-z0-9._%+-]{4,25}@[A-Za-z0-9.-]{5,10}\.[a-zA-Z]{3}$/);
+      return matches ? null : { 'invalidEmail': true };
+    } else {
+      return null;
+    }
+  }
+
+  phoneValidator(control) {
+    if (control.value) {
+      const matches = control.value.match(/^[0-9]{10}$/);
+      return matches ? null : { 'invalidPhone': true };
+    } else {
+      return null;
+    }
+  }
   form() {
     this.facultyform = new FormGroup({
-
       employee_id: new FormControl(),
       institution_id: new FormControl(),
       first_name: new FormControl('', Validators.required),
       last_name: new FormControl('', Validators.required),
       dob: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
-      mobile_no: new FormControl('', Validators.required),
+      email: new FormControl('',[Validators.required, this.emailValidator]),
+      mobile_no: new FormControl('', [Validators.required, this.phoneValidator]),
       role_id: new FormControl('', Validators.required),
 
 
-    });
+   });
     this.facultyform.patchValue({ institution_id: this.orgid })
 
 

@@ -60,7 +60,7 @@
                </div>
              </div>
              <br>
-            <button type="submit" class="btn btn-dark">Save Faculty</button>
+            <button [disabled]="!facultyform.valid" type="submit" class="btn btn-dark">Save Faculty</button>
          </form>
       </p-tabPanel>
    </p-tabView>

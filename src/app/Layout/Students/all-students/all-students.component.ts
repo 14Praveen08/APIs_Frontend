@@ -65,13 +65,44 @@ export class AllStudentsComponent implements OnInit {
     this._studentService.getStudentByInstYear(this.selectedInst, this.selectedyear).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = false : this.flag = true });
   }
 
-  getstudents(){
+  reloadOrgDept() {
+    this._studentService.getStudentByInstDept(this.selectedInst, this.selectedDept).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = false : this.flag = true });
+  }
+
+  reloadDeptYear() {
+    this._studentService.getStudentByDeptYear(this.selectedDept, this.selectedyear).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = false : this.flag = true });
+  }
+
+  reloadOrgYearDept(){
     this._studentService.getStudentByInstYearDept(this.selectedInst,this.selectedyear, this.selectedDept).subscribe(data => { this.students = data, _.isEmpty(this.students) ? this.flag = false : this.flag = true});
   }
 
   save(){
-    console.log(this.selectedInst, this.selectedyear, this.selectedDept);
-    this.getstudents();
+    if(this.selectedInst !=0 && this.selectedyear !=0 && this.selectedDept !=0 ){
+      this.reloadOrgYearDept();
+    }
+    else if(this.selectedInst !=0 && this.selectedyear!=0 ){
+      this.reloadOrgYear();
+    }
+    else if(this.selectedDept !=0 && this.selectedyear!=0 ){
+      this.reloadDeptYear();
+    }
+    else if(this.selectedDept !=0 && this.selectedInst!=0 ){
+      this.reloadOrgDept();
+    }
+    else if(this.selectedDept !=0 ){
+      this.reloadDept();
+    }
+    else if(this.selectedyear !=0){
+      this.reload();
+    }
+    else if(this.selectedInst !=0){
+      this.reloadOrg();
+    }
+    else{
+      this.load();
+    }
+    
   }
 
   delete(id:number){
@@ -85,35 +116,11 @@ export class AllStudentsComponent implements OnInit {
   }
   organization(id: number) {
     this.selectedInst = id;
-    // if (this.selectedInst != 0 && this.selectedyear != 0) {
-    //   this.reloadOrgYear();
-    // }
-    // else if (this.selectedInst == 0 && this.selectedyear != 0) {
-    //   this.reload();
-    // }
-    // else if (this.selectedInst != 0 && this.selectedyear == 0) {
-    //   this.reloadOrg();
-    // }
-    // else {
-    //   this.load();
-    // }
   }
   year(id: number) {
     this.selectedyear = id;
-    // if (this.selectedyear == 0 || this.selectedInst == 0) {
-    //   this.load();
-    // }
-    // else {
-    //   this.reload();
-    // }
   }
   department(id: number) {
     this.selectedDept = id;
-    // if(this.selectedDept !=0 ){
-    //   this.reloadDept();
-    // }
-    // else{
-    //   this.load();
-    // }
   }
 }
